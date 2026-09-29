@@ -204,6 +204,24 @@
   .buycol label{cursor:pointer; line-height:1.4}
   .buycol input:checked + label{color:var(--ink-3); text-decoration:line-through; text-decoration-color:var(--line-strong)}
 
+  .refbtn{width:100%; display:flex; align-items:center; gap:13px; margin-top:16px; padding:15px 17px;
+    border:1px solid var(--line-strong); border-radius:14px; background:var(--surface); box-shadow:var(--press)}
+  .refbtn:hover{transform:translateY(-2px); box-shadow:var(--press-hi)}
+  .refbtn .rb-l{flex:1; min-width:0}
+  .refbtn .rb-e{display:block; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+  .refbtn .rb-t{display:block; font-family:"Newsreader",serif; font-size:20px; margin-top:3px}
+  .refbtn .rb-a{flex:0 0 auto; color:var(--green)}
+  .refh{font-size:23px; margin:30px 0 4px}
+  .refnote{font-size:15.5px; color:var(--ink-2); margin-bottom:10px; max-width:62ch}
+  .rlist{margin-top:8px}
+  .rlist li{display:grid; grid-template-columns:30px 1fr; gap:11px; padding:9px 0; border-bottom:1px solid var(--line); font-size:16.5px; line-height:1.5}
+  .rlist li:last-child{border-bottom:none}
+  .rlist li .rn{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink-3); padding-top:3px}
+  .tablewrap{overflow-x:auto; margin-top:12px; border:1px solid var(--line); border-radius:12px; background:var(--surface)}
+  .tablewrap table{border-collapse:collapse; width:100%; min-width:520px; font-size:15px}
+  .tablewrap th,.tablewrap td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  .tablewrap th{font-size:11.5px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2)}
+  .tablewrap tr:last-child td{border-bottom:none}
   .prevnext{display:flex; gap:9px; margin-top:16px}
   .pnbtn{flex:1; border:1px solid var(--line); background:var(--surface); border-radius:12px; padding:13px 15px; font-size:15px; font-weight:700; color:var(--ink-2)}
   .pnbtn:hover:not(:disabled){border-color:var(--line-strong); color:var(--ink)}
@@ -286,6 +304,7 @@
 <section class="screen" id="v-plans"><div class="pad fill" id="plansBody"></div></section>
 <section class="screen" id="v-days"><div class="pad fill" id="daysBody"></div></section>
 <section class="screen" id="v-day"><div class="pad fill" id="dayBody"></div></section>
+<section class="screen" id="v-ref"><div class="pad scrolls" style="padding-block:18px 40px" id="refBody"></div></section>
 <section class="screen" id="v-meal"><div class="pad scrolls" style="padding-block:18px 30px" id="mealBody"></div></section>
 
 <div class="toasts" id="toasts" aria-live="polite"></div>
@@ -631,6 +650,148 @@ const LC_SCHEDULE = [
   {n:5, key:'o5'}, {n:6, key:'o6'}, {n:7, key:'o7'}
 ];
 
+
+/* ============================================================
+   REFERENCE — the dietitian's own detail, kept out of the daily
+   screens so those stay short, but never lost.
+   ============================================================ */
+const DETOX_REF = [
+ {h:'The batters', note:'Almost every meal comes out of a batter, and every batter has a clock on it. Read it backwards: find the day you need it, then count the hours back to the soak.',
+  cols:['Batter','Soak','How to grind','Keeps'],
+  rows:[
+   ['Pesarattu — whole green gram','8 hours','Thick, idli-batter consistency, with green chilli and ginger. <b>Never ferment.</b>','Same day only'],
+   ['Moong dal — split','2 hours','With green chilli, coriander leaves and jeera. Thick for idli, thinned down for dosa.','2 days, chilled'],
+   ['Mixed dal / adai','5 hours','Chana, toor and moong dal with a little urad. Coarse, with red chilli, jeera and dhaniya.','2 days, chilled'],
+   ['Idli–dosa — rice + urad 4:1','4 hours','Grind at 8 pm, ferment overnight about 8 hours, use it fresh in the morning. <b>Do not chill it.</b>','Use the next morning'],
+   ['Sprouted moong','8 hours, then 24–36 tied in muslin','Drain, rinse, tie in damp cloth, keep warm and dark. Refrigerate once the tails show.','2 days, chilled']]},
+
+ {h:'The three soaks that cannot slip', items:[
+  '<b>Green gram, the night before Day 1.</b> Eight hours. Monday needs about five pesarattu across the day — it is the biggest soak in the plan.',
+  '<b>Idli rice and urad dal, in at 4 pm.</b> Four hours soaking, ground at 8 pm, fermented overnight, used fresh at breakfast. Monday sets up Tuesday’s idli; Wednesday sets up Thursday’s dosa.',
+  '<b>Sprouting moong, Thursday morning.</b> Soak at 6 am, drain and tie in muslin that night, tails showing by Friday evening, eaten Saturday morning. Forty-eight hours, and there is no catching it up.']},
+
+ {h:'The day’s rhythm', items:[
+  '<b>4:45 am</b> — jeera and dhaniya on to boil.',
+  '<b>5:00 am</b> — strain and drink it warm, before anything else.',
+  '<b>5:30 am</b> — black coffee, no sugar, thirty minutes after the water and not before.',
+  '<b>5:15 am</b> — grind the green gram soaked overnight. Thick, no fermenting.',
+  '<b>7:45 am</b> — press the juice. Thin it with water, never filter it.',
+  '<b>20 minutes before each chia</b> — stir it into the water so it gels.',
+  '<b>4:00 pm</b> — idli rice and urad in to soak, on the days that need it.',
+  '<b>8:00 pm</b> — grind that batter and leave it somewhere warm overnight.']},
+
+ {h:'Recipes', items:[
+  '<b>Pesarattu (green gram dosa)</b> — soak whole green gram 8 hours. Grind with green chillies and ginger, thick: the batter should be idli-batter consistency. Do not ferment.',
+  '<b>Moong dal dosa</b> — soak moong dal 2 hours. Grind with green chillies, dhaniya leaves and jeera.',
+  '<b>Mixed dal dosa / adai</b> — chana dal, toor dal, moong dal and a little urad dal, soaked together 5 hours. Add red chillies, jeera and dhaniya, and grind coarse.',
+  '<b>Moong dal idli</b> — the moong dal dosa batter ground thicker, poured into idli moulds and steamed.',
+  '<b>Besan dosa</b> — besan flour with curd, beaten into a thick batter. Instant, like a wheat dosa. Onions scattered on top.',
+  '<b>Groundnut chutney</b> — dry-roast 100 g groundnuts, rub off the skins, grind with 2 dry red chillies, a small piece of tamarind, garlic and salt. <b>No jaggery.</b>',
+  '<b>Jeera–dhaniya water</b> — 1 tsp jeera and 1 tsp dhaniya boiled in 1½ glasses of water, simmered 5 minutes and strained to one glass.',
+  '<b>Chia water</b> — 5 g to 1 tsp chia in 250 ml, left 20 minutes to gel.']},
+
+ {h:'Detox rules', ordered:true, items:[
+  'No jaggery after meals.',
+  'No exercise or walk is required during the grain-free days.',
+  'Keep water intake at 2 litres.',
+  'Follow the diet as per the days.',
+  'No tea or coffee during the detox. Black tea or green tea is allowed.',
+  'Headache, lethargy and tiredness are very common during a detox.',
+  'No fruit with breakfast — take it as a stand-alone meal. Do not skip the vegetable juice; add more water and make it thin, but do not filter it.']},
+
+ {h:'Notes', ordered:true, items:[
+  'Regular food journaling.',
+  'Weight update every alternate day, checked on an empty stomach.',
+  'Reach 3 litres of water a day and report it by end of day.',
+  'Mindful eating — no TV or mobile while eating.',
+  'Fruit is the food of choice during stress.',
+  '5000 steps a day, shared by end of day.',
+  'No tea or coffee after 6 pm.',
+  'Next consultation after completing the detox plan.',
+  'Puffed rice, poha and saviyan can also be used on the grain days.',
+  'Shift rice towards brown rice.',
+  'Vegetables and dal should be part of every day.',
+  'No sweets at all during the detox period.']},
+
+ {h:'Protein worth counting', cols:['Source','Protein'],
+  rows:[['1 cup yogurt or curd','6 g'],['100 g pappu','7 g'],['100 g chana masala','6.8 g'],['50 g paneer','about 12 g']]},
+
+ {h:'Portion sizes', cols:['Measure','Weight'],
+  rows:[['Bowl','250–300 g'],['Cup or mug','240–250 g'],['Katori','100–150 g']]}
+];
+
+const LOWCARB_REF = [
+ {h:'How to use the options', ordered:true, items:[
+  'Any option can be shuffled — take whichever suits the day.',
+  'There are no vegetable restrictions.',
+  'Rest options are given in the table.',
+  'Physical activity can be restarted, walking included.',
+  'Daily step target — 5K, 6K, then 10K steps.',
+  'Any vegetable can be used: bhendi, bottle gourd, methi, tondekai, spinach, cabbage, gobi, gorikai, beans, carrot and so on.']},
+
+ {h:'Notes', ordered:true, items:[
+  'Water intake 3 litres a day.',
+  '5000 steps.',
+  'Food journaling.',
+  'Half of the plate needs to be filled with vegetables.',
+  'Follow the grain-free detox plan after a cheat meal day.',
+  'Have salads at home before leaving to eat out.',
+  'Drink one glass of water before starting a heavy meal.',
+  'One cup of coffee, with less sugar.',
+  'To control sugar cravings, have fruits and nuts.',
+  'Every alternate day check your FBS and PPBS, and report them.',
+  'Increase the walk to 30 minutes, and after meals make sure you walk 15 minutes.']},
+
+ {h:'Daily habits', ordered:true, items:[
+  'Regular food journaling.',
+  'Weight update every alternate day, on an empty stomach.',
+  'Reach 3 litres of water a day and report by end of day.',
+  'Mindful eating — no TV or mobile while eating.',
+  'Fruit is the food of choice during stress.',
+  '5000 steps a day, shared by end of day.',
+  'No tea or coffee after 6 pm.',
+  'Next consultation after completing the plan.',
+  'Other food choices are puffed rice, poha and saviyan.',
+  'Shift rice towards brown rice.',
+  'Vegetables and dal should be part of the diet.',
+  'More vegetables and fruits, and protein in the form of dal, pulses and paneer.']},
+
+ {h:'Guidelines', ordered:true, items:[
+  'Follow meal sequencing — salads first, then proteins, then carbs.',
+  'Proteins are dal, pulses, paneer and curd.',
+  'Vegetables should be double the quantity of the carbs.',
+  'If you are including bread, coat it with besan flour, tawa fry it, and have it.',
+  'Add peanut butter, avocado or paneer stuffing to a bread sandwich.',
+  'Keep nuts and seeds for snacks.',
+  'Drink water before you eat anything heavy.',
+  'Sprouts curry, paneer bhurji, boiled rajma and boiled chana — add them at dinner.',
+  'Try to avoid grains at dinner.',
+  'Add sattu powder to water or buttermilk in the mid-morning snack, to reduce cravings.',
+  'Isabgol or psyllium husk in the buttermilk before lunch or dinner, when you are not having salad.',
+  'Besan chilla or dal chilla can be made at home.',
+  'Balance your meals with proteins and vegetables.',
+  'Exercise — cover a minimum of 5K steps in a brisk walk.',
+  'Walk after every meal.',
+  'Eating out: rava idli with sambar or plain dosa. Ask them to avoid aloo sabji, and to reduce the oil.',
+  'Keep water intake at 3 litres a day.',
+  'Prepare soups using broccoli, carrot and beans.',
+  'Do not go for a second serving.']},
+
+ {h:'Detox water', items:[
+  'Turmeric, jeera, fennel seeds and ajwain. To 250 ml of water add ½ tsp turmeric, 1 tsp jeera, 1 tsp fennel seeds and ½ tsp ajwain. Boil for 5 minutes, strain, and drink.',
+  'There are no restrictions on wheat and wheat products, or milk and milk products.']},
+
+ {h:'Protein dishes', items:[
+  'Kadalekalu palya','Paneer curry — no cashew cream','Soya chunks curry','Moong dal','Bele palya',
+  'Huralikalu palya','Heserukalu palya','Alasande kalu palya','Madike kalu palya','Batani palya']},
+
+ {h:'Other breakfast and lunch options', items:[
+  'Adai dose — 2','Pesarattu — 2','Onion dosa — 1','Set dosa — 2','Vegetable poha — 100 g',
+  'Vegetable uppittu — 100 g','Oats upma — 100 g','Oats dosa — 2','Wheat dosa — 2','Jowar dosa — 2',
+  'Besan dosa — 2','Vegetable pulav with carrot, beans, gobi and peas — 100 g',
+  'Puliyogare — 100 g, with majjige huli 1 cup','Lemon rice — 100 g, with cucumber raita 1 cup']}
+];
+
 /* ============================================================
    PLANS
    ------------------------------------------------------------
@@ -649,7 +810,8 @@ const PLANS = [
    title:'Ten days, <em>grain by grain</em>',
    sub:'Pick a day. You get everything to buy for it, and every step of prep timed to the meal it feeds.',
    days:D,
-   schedule:SCHEDULE},
+   schedule:SCHEDULE,
+   reference:DETOX_REF},
   {id:'lowcarb',
    name:'Low Carbs',
    eyebrow:'Seven options, three weeks',
@@ -657,7 +819,8 @@ const PLANS = [
    sub:'Seven complete days. Pick whichever suits you, and shuffle them however you like across the three weeks.',
    unit:'Option', sequential:false, lenLabel:'7 daily options',
    days:L,
-   schedule:LC_SCHEDULE}
+   schedule:LC_SCHEDULE,
+   reference:LOWCARB_REF}
 ];
 /* ============================================================
    STATE
@@ -794,7 +957,14 @@ function renderDays(){
         '</button>';
       }).join('')+
     '</div>'+
+    (P.reference ? '<button class="refbtn" type="button" id="refBtn">'+
+      '<span class="rb-l"><span class="rb-e">Reference</span>'+
+      '<span class="rb-t">'+(P.refTitle || 'The dietitian\u2019s notes')+'</span></span>'+
+      '<span class="rb-a">'+ARROW+'</span></button>' : '')+
     (sched().some(x=>['g','gf'].includes(tpl(x).type)) ? '<div class="legend"><span><i></i> Grain-free</span><span><i class="g"></i> Grain day</span></div>' : '')+'</div>';
+  const rb = document.getElementById('refBtn');
+  if(rb) rb.addEventListener('click', ()=> go('ref'));
+
   document.getElementById('dayGrid').addEventListener('click', ev=>{
     const b = ev.target.closest('.k.day'); if(!b) return;
     state.day = Number(b.dataset.n); go('day');
@@ -994,21 +1164,47 @@ function renderMeal(){
 }
 
 /* ============================================================
+   REFERENCE SCREEN
+   ============================================================ */
+function renderRef(){
+  const P = plan();
+  const secs = (P.reference || []).map(sec=>{
+    let body;
+    if(sec.rows){
+      body = '<div class="tablewrap"><table><thead><tr>'+
+        sec.cols.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+
+        sec.rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i===0?'<b>'+c+'</b>':c)+'</td>').join('')+'</tr>').join('')+
+        '</tbody></table></div>';
+    } else {
+      body = '<ol class="rlist">'+sec.items.map((it,i)=>
+        '<li>'+(sec.ordered ? '<span class="rn">'+(i+1)+'</span>' : '<span class="rn">·</span>')+'<span>'+it+'</span></li>').join('')+'</ol>';
+    }
+    return '<h2 class="refh">'+sec.h+'</h2>'+(sec.note?'<p class="refnote">'+sec.note+'</p>':'')+body;
+  }).join('');
+  document.getElementById('refBody').innerHTML =
+    '<div class="anim"><div class="hd"><p class="eyebrow">'+P.name+'</p><h1>Reference</h1>'+
+    '<p class="sub">Everything the plan says beyond the daily screens — kept here so those stay short.</p></div>'+
+    secs+
+    '<div class="foot">Plan by Aayurspandana · Ayur-Aahar-Aarogya.</div></div>';
+}
+
+/* ============================================================
    NAVIGATION
    ============================================================ */
-const VIEWS = ['plans','days','day','meal'];
-const UP = {days:'plans', day:'days', meal:'day'};
+const VIEWS = ['plans','days','day','meal','ref'];
+const UP = {days:'plans', day:'days', meal:'day', ref:'days'};
 
 function updateNav(){
   const back = document.getElementById('back');
   const crumb = document.getElementById('crumb');
   const prog = document.getElementById('navprog');
   back.hidden = state.view === 'plans';
-  const labels = {plans:'', days:'Plans', day:plan().name, meal:unit()+' '+state.day};
+  const labels = {plans:'', days:'Plans', day:plan().name, meal:unit()+' '+state.day, ref:plan().name};
   document.getElementById('backlab').textContent = labels[state.view] || 'Back';
 
   const e = entry(), t = tpl(e);
-  if(state.view === 'plans'){ crumb.textContent = 'PLANS'; prog.textContent = ''; }
+  if(state.view === 'ref'){ crumb.textContent = plan().name.toUpperCase()+' · REFERENCE'; prog.textContent = ''; }
+  else if(state.view === 'plans'){ crumb.textContent = 'PLANS'; prog.textContent = ''; }
   else if(state.view === 'days'){
     const s = planPct(plan());
     crumb.textContent = plan().name.toUpperCase();
@@ -1033,6 +1229,7 @@ function go(view){
   if(view==='days')  renderDays();
   if(view==='day')   renderDay();
   if(view==='meal')  renderMeal();
+  if(view==='ref')   renderRef();
   updateNav();
   window.scrollTo(0,0);
 }

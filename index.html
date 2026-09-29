@@ -601,17 +601,17 @@ const FINISH = {head:'the finish line', tasks:[
 ], foot:'Nothing to soak tonight. That is the whole ten days.'};
 
 const SCHEDULE = [
-  {n:0,  key:'prep', date:'20 Sep'},
-  {n:1,  key:'mon', date:'21 Sep'},
-  {n:2,  key:'tue', date:'22 Sep'},
-  {n:3,  key:'wed', date:'23 Sep'},
-  {n:4,  key:'thu', date:'24 Sep'},
-  {n:5,  key:'fri', date:'25 Sep'},
-  {n:6,  key:'sat', date:'26 Sep'},
-  {n:7,  key:'sun', date:'27 Sep'},
-  {n:8,  key:'mon', date:'28 Sep'},
-  {n:9,  key:'tue', date:'29 Sep'},
-  {n:10, key:'wed', date:'30 Sep', night:FINISH}
+  {n:0,  key:'prep'},
+  {n:1,  key:'mon'},
+  {n:2,  key:'tue'},
+  {n:3,  key:'wed'},
+  {n:4,  key:'thu'},
+  {n:5,  key:'fri'},
+  {n:6,  key:'sat'},
+  {n:7,  key:'sun'},
+  {n:8,  key:'mon'},
+  {n:9,  key:'tue'},
+  {n:10, key:'wed', night:FINISH}
 ];
 
 /* ============================================================
@@ -626,8 +626,8 @@ const SCHEDULE = [
    ============================================================ */
 const PLANS = [
   {id:'detox',
-   name:'Detox plan',
-   eyebrow:'21 – 30 September 2026',
+   name:'DetoxTen',
+   eyebrow:'Alternating grain-free and grain days',
    title:'Ten days, <em>grain by grain</em>',
    sub:'Pick a day. You get everything to buy for it, and every step of prep timed to the meal it feeds.',
    days:D,
@@ -759,7 +759,7 @@ function renderDays(){
         return '<button class="k day" type="button" data-n="'+e.n+'" data-type="'+(e.n===0?'prep':t.type)+'" data-done="'+(allDone(ks)?'1':'0')+'">'+
           '<span class="band"></span><span class="tick" style="--p:'+pct(ks)+'"></span>'+
           '<span class="d-lab">'+(e.n===0?'START':'DAY')+'</span><span class="d-n">'+e.n+'</span>'+
-          '<span class="d-wd">'+t.wd+'</span><span class="d-dt">'+e.date+'</span>'+
+          '<span class="d-wd">'+t.wd+'</span>'+
         '</button>';
       }).join('')+
     '</div>'+
@@ -796,7 +796,7 @@ function renderDay(){
       '<p class="eyebrow">'+plan().name+'</p>'+
       '<h1>'+(e.n===0 ? 'Day 0 · Get set' : 'Day '+e.n+' · '+t.name)+'</h1>'+
       '<div class="badges"><span class="kind '+(t.type==='g'?'g':t.type==='prep'?'p':'')+'">'+(t.type==='gf'?'Grain-free':t.type==='prep'?'Before you start':'Grain day')+'</span>'+
-        '<span class="when">'+e.date+' 2026</span></div>'+
+        '</div>'+
     '</div>'+
     '<div class="slim"><i style="width:'+pct(ks)+'%"></i></div>'+
     '<div class="grid" id="mealGrid">'+cells.join('')+'</div>'+

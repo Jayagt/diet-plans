@@ -228,6 +228,19 @@
   .tablewrap th,.tablewrap td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
   .tablewrap th{font-size:11.5px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2)}
   .tablewrap tr:last-child td{border-bottom:none}
+  @media (max-width:640px){
+    .tablewrap.wide{overflow-x:visible; border:none; background:none; border-radius:0}
+    .tablewrap.wide table{min-width:0; width:100%}
+    .tablewrap.wide thead{display:none}
+    .tablewrap.wide table, .tablewrap.wide tbody, .tablewrap.wide tr, .tablewrap.wide td{display:block; width:auto}
+    .tablewrap.wide tr{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:13px 15px 14px; margin-bottom:11px}
+    .tablewrap.wide tr:last-child{margin-bottom:0}
+    .tablewrap.wide td{border:none; padding:7px 0 0}
+    .tablewrap.wide td:first-child{padding-top:0; font-size:18px}
+    .tablewrap.wide td::before{content:attr(data-l); display:block; font-size:11.5px; font-weight:700;
+      letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px}
+    .tablewrap.wide td:first-child::before{display:none}
+  }
   .prevnext{display:flex; gap:9px; margin-top:16px}
   .pnbtn{flex:1; border:1px solid var(--line); background:var(--surface); border-radius:12px; padding:13px 15px; font-size:15px; font-weight:700; color:var(--ink-2)}
   .pnbtn:hover:not(:disabled){border-color:var(--line-strong); color:var(--ink)}
@@ -1181,9 +1194,11 @@ function refCount(sec){
 }
 function refBody(sec){
   if(sec.rows){
-    return '<div class="tablewrap"><table><thead><tr>'+
+    const wide = sec.cols.length > 2;
+    return '<div class="tablewrap'+(wide?' wide':'')+'"><table><thead><tr>'+
       sec.cols.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+
-      sec.rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i===0?'<b>'+c+'</b>':c)+'</td>').join('')+'</tr>').join('')+
+      sec.rows.map(r=>'<tr>'+r.map((c,i)=>
+        '<td data-l="'+sec.cols[i]+'">'+(i===0?'<b>'+c+'</b>':c)+'</td>').join('')+'</tr>').join('')+
       '</tbody></table></div>';
   }
   return '<ol class="rlist">'+sec.items.map((it,i)=>

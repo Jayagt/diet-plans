@@ -1091,8 +1091,10 @@ function renderMeal(){
   /* previous / next — runs straight through the plan, not just this day */
   const seq = [];
   sched().forEach(d0=>{
+    /* match the grid: a shopping list leads the day, a night key closes it */
+    if(!isSeq()) seq.push({n:d0.n, slot:'tonight'});
     plan().days[d0.key].slots.forEach((_,i)=> seq.push({n:d0.n, slot:i}));
-    seq.push({n:d0.n, slot:'tonight'});
+    if(isSeq()) seq.push({n:d0.n, slot:'tonight'});
   });
   const at = seq.findIndex(x=> x.n===e.n && String(x.slot)===String(si));
   const nameOf = it => {

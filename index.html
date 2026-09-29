@@ -614,6 +614,227 @@ const SCHEDULE = [
   {n:10, key:'wed', night:FINISH}
 ];
 
+
+/* ============================================================
+   LOW CARBS — seven interchangeable daily options, not a sequence.
+   Pick any one on any day, for three weeks, and shuffle freely.
+   ============================================================ */
+const LC_WATER = [
+  {t:'5:45 am', d:'Boil 1 tsp jeera and 1 tsp dhaniya in 250 ml of water for 5 minutes, then strain.'},
+  {t:'6:00 am', d:'Drink it warm. <i>Alternative: ½ tsp turmeric, 1 tsp jeera, 1 tsp fennel and ½ tsp ajwain boiled in 250 ml for 5 minutes, strained.</i>'}
+];
+const LC_WATER_EAT = [{n:'Jeera and dhaniya boiled water', q:'200 ml'}];
+const LC_CHIA = t => ({t:'10:40 am', d:'Stir chia into '+t+' of water and leave it 20 minutes to gel.'});
+
+const L = {};
+
+L.o1 = {
+  name:'Vegetable dosa', wd:'VEG DOSA', type:'lc', kind:'Eggs included',
+  buy:{
+    veg:['Carrot — 2','Beetroot — 1','Tomato — 2','Cucumber — 2','Hirekai / ridge gourd — 250 g','Onion — 1','Watermelon — a wedge'],
+    pantry:['Dosa batter','Peanuts — 50 g for the chutney','Whole green gram — ½ cup for the usali','Atta — for 3 phulka','Roasted chana — 30 g','Chia seeds','Flaxseed powder','Jeera and dhaniya','Coffee'],
+    dairy:['Curd — small cup, plus buttermilk','Eggs — 2']
+  },
+  slots:[
+    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[
+      {t:'7:30 am', d:'Grate carrot and beetroot, chop a tomato, and stir them <b>into the batter</b> — the vegetables go in, not on the side.'},
+      {t:'7:45 am', d:'Peanut chutney: dry-roast 50 g peanuts, rub off the skins, grind with red chilli, a little tamarind and salt.'},
+      {t:'7:50 am', d:'Boil 2 eggs.'},
+      {t:'8:00 am', d:'One dosa on a hot tawa.'}
+    ], eat:[{n:'Home-made vegetable dosa', q:'1'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Boiled egg', q:'2 · if possible'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml'),{t:'11:00 am', d:'Cut 4–5 cubes of watermelon.'}],
+      eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Watermelon', q:'4–5 cubes'}]},
+    {t:'1:00 pm', label:'Lunch', do:[
+      {t:'8:00 am', d:'<b>Green gram usali</b> — soak ½ cup whole green gram, boil it soft, temper with mustard, curry leaves and grated coconut. It appears again at dinner, so make both katoris now.'},
+      {t:'12:15 pm', d:'Hirekai palya from the ridge gourd.'},
+      {t:'12:45 pm', d:'Two small chapatis.'}
+    ], eat:[{n:'Chapati', q:'2 small'},{n:'Hirekai palya', q:'1 katori'},{n:'Green gram usali', q:'1 katori · mandatory'},{n:'Curd', q:'small cup'}]},
+    {t:'5:00 pm', label:'Tea', do:[{t:'5:00 pm', d:'Coffee, no sugar. Weigh the chana rather than taking a handful.'}],
+      eat:[{n:'Coffee without sugar', q:'1 cup · 100 ml'},{n:'Roasted chana', q:'30 g'}]},
+    {t:'6:30 pm', label:'Dinner', do:[
+      {t:'6:10 pm', d:'Slice carrot and cucumber for the salad.'},
+      {t:'6:20 pm', d:'One phulka, no oil. Warm the second katori of green gram usali.'},
+      {t:'6:25 pm', d:'Whisk buttermilk and stir in a spoon of flaxseed powder.'}
+    ], eat:[{n:'Phulka, without oil', q:'1'},{n:'Carrot and cucumber salad', q:'1 cup'},{n:'Green gram usali', q:'1 katori · 150 g'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]}
+  ]
+};
+
+L.o2 = {
+  name:'Idli', wd:'IDLI', type:'lc',
+  buy:{
+    veg:['Methi leaves — 1 bunch','Carrot — 2','Beans — 150 g','Cucumber — 1','Tomato — 2','Onion — 2','Grapes — a small bunch'],
+    pantry:['Idli batter','Toor dal','Sambar powder, tamarind','Brown rice — 150 g','Atta — for 1 phulka','Roasted makhana — 30 g','Chia seeds','Flaxseed powder'],
+    dairy:['Curd — 1 katori, plus buttermilk','Milk for the coffee']
+  },
+  slots:[
+    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
+    {t:'9:00 am', label:'Breakfast', do:[
+      {t:'8:15 am', d:'Sambar — cook toor dal soft with vegetables, tamarind and sambar powder. Make enough for breakfast and the methi sambar at lunch.'},
+      {t:'8:45 am', d:'Steam the idlis.'}
+    ], eat:[{n:'Idli', q:'3 · if they are small'},{n:'Sambar', q:'1 cup'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Grapes', q:'4'}]},
+    {t:'1:00 pm', label:'Lunch', do:[
+      {t:'12:00 pm', d:'Cook the brown rice. <b>Measure 150 g cooked</b> and put the rest away.'},
+      {t:'12:20 pm', d:'Add chopped methi to a cup of the morning sambar.'},
+      {t:'12:35 pm', d:'Carrot and beans palya — 150 g.'},
+      {t:'12:50 pm', d:'Buttermilk with a spoon of flaxseed powder.'}
+    ], eat:[{n:'Brown rice', q:'150 g'},{n:'Methi sambar', q:'1 cup'},{n:'Carrot and beans palya', q:'150 g'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]},
+    {t:'5:00 pm', label:'Tea', do:[{t:'5:30 pm', d:'Coffee with milk, no sugar. Makhana at 5:30.'}],
+      eat:[{n:'Coffee with milk, without sugar', q:'1 cup'},{n:'Roasted makhana', q:'30 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[
+      {t:'6:30 pm', d:'Dal methi — 2 katori.'},
+      {t:'6:45 pm', d:'Kosumbari: grate carrot and cucumber, add lemon and coriander.'},
+      {t:'6:55 pm', d:'One chapati, phulka for preference.'}
+    ], eat:[{n:'Chapati', q:'1 · preferably phulka'},{n:'Dal methi', q:'2 katori'},{n:'Carrot and cucumber kosumbari', q:'1 cup'},{n:'Curd', q:'1 katori'}]}
+  ]
+};
+
+L.o3 = {
+  name:'Raagi rotti', wd:'RAAGI ROTTI', type:'lc', kind:'Highest protein',
+  buy:{
+    veg:['Carrot — 1','Onion — 2','Cucumber — 1','Tomato — 2','Green peas — 150 g','Cabbage — ½','Coriander, curry leaves','Apple — 1'],
+    pantry:['Raagi flour','Wheat flour','Peanuts — 50 g for the chutney','Moong dal — ½ cup','Mixed seeds — 15 g','Rice for the palav — 100 g','Chia seeds'],
+    dairy:['Paneer — 100 g','Curd — 1 cup, plus raita']
+  },
+  slots:[
+    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[
+      {t:'7:30 am', d:'Raagi rotti dough: raagi flour with grated carrot, onion, coriander and salt. Pat it out thin, cook <b>without oil</b>.'},
+      {t:'7:50 am', d:'Cube and dry-roast 100 g paneer.'}
+    ], eat:[{n:'Raagi vegetable rotti, without oil', q:'2 small'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Roasted paneer', q:'100 g'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Apple', q:'1'}]},
+    {t:'1:00 pm', label:'Lunch', do:[
+      {t:'12:15 pm', d:'Vegetable peas palav — keep it to 200 g on the plate.'},
+      {t:'12:45 pm', d:'Cucumber and tomato raita, 200 g.'}
+    ], eat:[{n:'Vegetable peas palav', q:'200 g'},{n:'Cucumber and tomato raita', q:'200 g'}]},
+    {t:'5:00 pm', label:'Tea', do:[{t:'5:30 pm', d:'Coffee, no sugar. Roasted mixed seeds at 5:30 — 15 g weighed.'}],
+      eat:[{n:'Coffee without sugar', q:'1 cup'},{n:'Roasted mixed seeds', q:'15 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[
+      {t:'6:30 pm', d:'Cabbage and moong dal palya.'},
+      {t:'6:50 pm', d:'Raagi and wheat dose, one, <b>without oil</b>.'}
+    ], eat:[{n:'Raagi and wheat dose, without oil', q:'1'},{n:'Cabbage and moong dal palya', q:'1 cup'},{n:'Curd', q:'1 cup'}]}
+  ]
+};
+
+L.o4 = {
+  name:'Vegetable upma', wd:'UPMA', type:'lc',
+  buy:{
+    veg:['Apple, beetroot and carrot for the juice','Mixed vegetables — 250 g','Cabbage — ½','Green peas — 1 katori','Papaya — 1 cup','Tomato, onion'],
+    pantry:['Upma rava — 150 g','Brown rice — 1 cup','Toor dal, sambar powder','Roasted nuts — 15 g','Atta — for 1 phulka','Chia seeds','Flaxseed powder'],
+    dairy:['Curd','Paneer — 5 cubes','Milk for the coffee']
+  },
+  slots:[
+    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
+    {t:'9:00 am', label:'Breakfast', do:[
+      {t:'8:30 am', d:'ABC juice — apple, beetroot and carrot, blended to 250 ml. Do not filter it.'},
+      {t:'8:45 am', d:'Dry-roast the rava and cook the upma with vegetables. Boil a katori of peas.'}
+    ], eat:[{n:'ABC juice', q:'250 ml'},{n:'Vegetable upma', q:'150 g'},{n:'Boiled peas', q:'1 katori'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Papaya', q:'1 cup'}]},
+    {t:'2:00 pm', label:'Lunch', do:[
+      {t:'1:15 pm', d:'Cook the brown rice and the sambar.'},
+      {t:'1:35 pm', d:'Cabbage palya, and a cup of mixed vegetables.'}
+    ], eat:[{n:'Brown rice', q:'1 cup'},{n:'Mixed vegetables', q:'1 cup'},{n:'Sambar', q:'1 cup'},{n:'Cabbage palya', q:'1 katori'},{n:'Curd', q:''}]},
+    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee with milk, no sugar. 15 g roasted nuts, weighed.'}],
+      eat:[{n:'Coffee with milk, without sugar', q:'100 ml'},{n:'Roasted nuts', q:'15 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[
+      {t:'6:30 pm', d:'Mixed vegetable sambar — 250 g.'},
+      {t:'6:45 pm', d:'Dry-roast 5 cubes of paneer. One phulka, no oil.'},
+      {t:'6:55 pm', d:'Buttermilk with flaxseed powder.'}
+    ], eat:[{n:'Chapati, phulka without oil', q:'1'},{n:'Mixed vegetable sambar', q:'250 g'},{n:'Roasted paneer', q:'5 cubes'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]}
+  ]
+};
+
+L.o5 = {
+  name:'Rava idli', wd:'RAVA IDLI', type:'lc', kind:'Eggs included',
+  buy:{
+    veg:['Mixed vegetables for sagu','Cucumber — 1','Onion — 1','Tomato — 2','Beetroot — 1','Apple — 1'],
+    pantry:['Rava for the idli','Rajma — ¾ cup','Brown or red rice — 200 g','Atta — for 2 chapati','Rice and moong dal for the pongal — 150 g','Roasted peanuts — 20 g','Chia seeds','Flaxseed powder'],
+    dairy:['Curd for the raita, plus buttermilk','Eggs — 1']
+  },
+  slots:[
+    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
+    {t:'9:00 am', label:'Breakfast', do:[
+      {t:'⚑ 8:00 am', d:'<b>Soak ¾ cup rajma now</b> — it needs the morning in water before it will cook soft for lunch.', flag:true},
+      {t:'8:30 am', d:'Rava idli batter — rava, curd and a pinch of soda, rested 20 minutes, then steamed.'},
+      {t:'8:45 am', d:'Mixed vegetable sagu. Boil one egg.'}
+    ], eat:[{n:'Rava idli', q:'2'},{n:'Mixed vegetable sagu', q:'1 katori'},{n:'Boiled egg', q:'1 · if possible'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Apple', q:'2–3 slices'}]},
+    {t:'1:00 pm', label:'Lunch', do:[
+      {t:'12:00 pm', d:'Cook the soaked rajma soft and make the curry.'},
+      {t:'12:35 pm', d:'Two medium chapatis <b>or</b> 200 g of cooked brown or red rice — one or the other, not both.'},
+      {t:'12:50 pm', d:'Cucumber, onion and tomato salad. Buttermilk with flaxseed powder.'}
+    ], eat:[{n:'Chapati 2 medium, or cooked brown/red rice 200 g', q:'pick one'},{n:'Rajma curry', q:'1 cup'},{n:'Cucumber, onion and tomato salad', q:''},{n:'Buttermilk with flaxseed powder', q:'250 ml'}]},
+    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee, no sugar. 20 g roasted peanuts.'}],
+      eat:[{n:'Coffee without sugar', q:'100 ml'},{n:'Roasted peanut', q:'20 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[
+      {t:'6:30 pm', d:'Pongal from rice and moong dal, cooked soft with pepper and jeera. <b>Measure 150 g.</b>'},
+      {t:'6:50 pm', d:'Beetroot raita.'}
+    ], eat:[{n:'Moong dal and rice pongal', q:'150 g'},{n:'Beetroot raita', q:'1 cup'}]}
+  ]
+};
+
+L.o6 = {
+  name:'Plain dosa', wd:'DOSA', type:'lc',
+  buy:{
+    veg:['Mixed vegetables for sambar','Methi leaves — 1 bunch','Onion, tomato','Vegetables for the stir fry — 1 bowl'],
+    pantry:['Dosa batter','Peanuts — 50 g for the chutney','Toor dal, sambar powder','Huralikalu / horse gram — ½ cup','Wheat flour for the methi roti','Roasted makhana — 30 g','Chia seeds','Flaxseed powder'],
+    dairy:['Paneer — 75 g, low fat and high protein','Buttermilk']
+  },
+  slots:[
+    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[
+      {t:'7:30 am', d:'Mixed vegetable sambar.'},
+      {t:'7:50 am', d:'Two dosas, <b>no oil</b>. Peanut chutney.'}
+    ], eat:[{n:'Regular dosa, no oil', q:'2'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Mixed vegetable sambar', q:'1 cup'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'1 glass'}]},
+    {t:'1:00 pm', label:'Lunch', do:[
+      {t:'12:15 pm', d:'Huralikalu palya — soak the horse gram ahead if it is not already done.'},
+      {t:'12:45 pm', d:'Methi roti, two, <b>without oil</b>.'}
+    ], eat:[{n:'Methi roti, without oil', q:'2'},{n:'Huralikalu palya', q:'1 cup'},{n:'Buttermilk with flaxseed powder', q:'200 ml'}]},
+    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee, no sugar. 30 g roasted makhana.'}],
+      eat:[{n:'Coffee without sugar', q:'1 cup · 100 ml'},{n:'Roasted makhana', q:'30 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[
+      {t:'6:40 pm', d:'Stir fry the vegetables hard and fast, then fold through <b>75 g of low-fat, high-protein paneer</b>. No grain tonight.'}
+    ], eat:[{n:'Stir-fried vegetables with paneer', q:'1 bowl · 75 g paneer'}]},
+    {t:'10:00 pm', label:'Bedtime', do:[{t:'9:40 pm', d:'Chia in water, 20 minutes ahead.'}], eat:[{n:'Chia seeds water', q:'1 glass'}]}
+  ]
+};
+
+L.o7 = {
+  name:'Raagi dosa', wd:'RAAGI DOSA', type:'lc', kind:'No grain at dinner',
+  buy:{
+    veg:['Cucumber — 2','Carrot — 1','Onion — 2','Tomato — 2','Muskmelon — 1 cup'],
+    pantry:['Raagi flour','Coconut for the chutney','Rice flour for the akki rotti','Rajma — ¾ cup','Chana — 30 g','Whole moong — ½ cup','Chia seeds'],
+    dairy:['Curd — 1 katori','Paneer — 50 g']
+  },
+  slots:[
+    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[
+      {t:'⚑ 7:00 am', d:'<b>Soak the chana, moong and rajma for dinner</b> — they need five hours in water before boiling. Chana just 30 g, not more.', flag:true},
+      {t:'7:40 am', d:'Coconut chutney.'},
+      {t:'7:55 am', d:'Two raagi dosas.'}
+    ], eat:[{n:'Raagi dosa', q:'2'},{n:'Coconut chutney', q:'1 tbsp'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Muskmelon', q:'1 cup'}]},
+    {t:'1:00 pm', label:'Lunch', do:[
+      {t:'12:15 pm', d:'Rajma curry.'},
+      {t:'12:40 pm', d:'Akki rotti, two small, patted thin.'},
+      {t:'12:55 pm', d:'Cucumber, carrot, onion and tomato salad.'}
+    ], eat:[{n:'Akki rotti', q:'2 small'},{n:'Rajma curry', q:'1 cup'},{n:'Cucumber, carrot, onion and tomato salad', q:'1 cup'},{n:'Curd', q:'1 katori'}]},
+    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee, no sugar.'}], eat:[{n:'Coffee without sugar', q:'100 ml'}]},
+    {t:'7:00 pm', label:'Dinner', do:[
+      {t:'6:15 pm', d:'Boil the soaked chana, moong and rajma until soft, then drain well.'},
+      {t:'6:40 pm', d:'Chop onion, tomato and cucumber through them to make a salad. Add 50 g paneer. <b>No grain tonight.</b>'}
+    ], eat:[{n:'Chana, moong and rajma salad', q:'250 g'},{n:'Paneer', q:'50 g'}]},
+    {t:'10:00 pm', label:'Bedtime', do:[{t:'9:40 pm', d:'Chia in water, 20 minutes ahead.'}], eat:[{n:'Chia seeds water', q:'200 ml'}]}
+  ]
+};
+
+const LC_SCHEDULE = [
+  {n:1, key:'o1'}, {n:2, key:'o2'}, {n:3, key:'o3'}, {n:4, key:'o4'},
+  {n:5, key:'o5'}, {n:6, key:'o6'}, {n:7, key:'o7'}
+];
+
 /* ============================================================
    PLANS
    ------------------------------------------------------------
@@ -627,11 +848,20 @@ const SCHEDULE = [
 const PLANS = [
   {id:'detox',
    name:'DetoxTen',
+   unit:'Day', sequential:true, lenLabel:'10 days + a prep evening',
    eyebrow:'Alternating grain-free and grain days',
    title:'Ten days, <em>grain by grain</em>',
    sub:'Pick a day. You get everything to buy for it, and every step of prep timed to the meal it feeds.',
    days:D,
-   schedule:SCHEDULE}
+   schedule:SCHEDULE},
+  {id:'lowcarb',
+   name:'Low Carbs',
+   eyebrow:'Seven options, three weeks',
+   title:'Seven days, <em>any order</em>',
+   sub:'Seven complete days. Pick whichever suits you, and shuffle them however you like across the three weeks.',
+   unit:'Option', sequential:false, lenLabel:'7 daily options',
+   days:L,
+   schedule:LC_SCHEDULE}
 ];
 /* ============================================================
    STATE
@@ -646,7 +876,9 @@ const ck = k => !!state.checks[k];
 function plan(){ return PLANS.find(p=>p.id===state.plan) || PLANS[0]; }
 function sched(){ return plan().schedule; }
 function tpl(e){ return plan().days[e.key]; }
-function nightOf(e){ return e.night || tpl(e).night; }
+function unit(){ return plan().unit || 'Day'; }
+function isSeq(){ return plan().sequential !== false; }
+function nightOf(e){ return isSeq() ? (e.night || tpl(e).night) : null; }
 function entry(){ return sched().find(x=>x.n===state.day) || sched()[0]; }
 /* every stored tick is namespaced by plan id, so plans never collide */
 function K(e, suffix){ return plan().id + ':d' + e.n + ':' + suffix; }
@@ -656,12 +888,14 @@ function slotKeys(e, si){
   const s = tpl(e).slots[si];
   return s.do.map((_,i)=>K(e,'s'+si+':do'+i)).concat(s.eat.map((_,i)=>K(e,'s'+si+':eat'+i)));
 }
-function nightKeys(e){ return nightOf(e).tasks.map((_,i)=>K(e,'n'+i)); }
+function nightKeys(e){ const n0 = nightOf(e); return n0 ? n0.tasks.map((_,i)=>K(e,'n'+i)) : []; }
 /* what must be in the house by tomorrow morning — Day 0 carries the whole pantry */
 function shopFor(e){
+  /* a sequence shops the night before; interchangeable options carry their own list */
+  if(!isSeq()) return tpl(e).buy;
   const nx = sched().find(x=>x.n === e.n + 1);
   if(!nx) return null;
-  return plan().days[nx.key].buy;   /* exactly what tomorrow needs, nothing else */
+  return plan().days[nx.key].buy;
 }
 function buyKeys(e){
   const b = shopFor(e); if(!b) return [];
@@ -729,7 +963,7 @@ function renderPlans(){
           '<span class="band"></span><span class="tick" style="--p:'+s.pct+'"></span>'+
           '<span class="p-eye">'+p.eyebrow+'</span>'+
           '<span class="p-name">'+p.name+'</span>'+
-          '<span class="p-len">'+p.schedule.filter(x=>x.n>0).length+' days + a prep evening</span>'+
+          '<span class="p-len">'+(p.lenLabel || p.schedule.length+' days')+'</span>'+
           '<span class="p-bar"><i style="width:'+s.pct+'%"></i></span>'+
           '<span class="p-go">'+s.done+' of '+s.total+' days cleared '+ARROW+'</span>'+
         '</button>';
@@ -759,12 +993,12 @@ function renderDays(){
         const t = tpl(e), ks = dayKeys(e);
         return '<button class="k day" type="button" data-n="'+e.n+'" data-type="'+(e.n===0?'prep':t.type)+'" data-done="'+(allDone(ks)?'1':'0')+'">'+
           '<span class="band"></span><span class="tick" style="--p:'+pct(ks)+'"></span>'+
-          '<span class="d-lab">'+(e.n===0?'START':'DAY')+'</span><span class="d-n">'+e.n+'</span>'+
+          '<span class="d-lab">'+(e.n===0?'START':unit().toUpperCase())+'</span><span class="d-n">'+e.n+'</span>'+
           '<span class="d-wd">'+t.wd+'</span>'+
         '</button>';
       }).join('')+
     '</div>'+
-    '<div class="legend"><span><i></i> Grain-free</span><span><i class="g"></i> Grain day</span><span><i class="p"></i> Prep evening</span></div></div>';
+    (isSeq() ? '<div class="legend"><span><i></i> Grain-free</span><span><i class="g"></i> Grain day</span><span><i class="p"></i> Prep evening</span></div>' : '')+'</div>';
   document.getElementById('dayGrid').addEventListener('click', ev=>{
     const b = ev.target.closest('.k.day'); if(!b) return;
     state.day = Number(b.dataset.n); go('day');
@@ -785,18 +1019,19 @@ function renderDay(){
   });
   const tk = tonightKeys(e), bk = buyKeys(e), nk = nightKeys(e);
   const isPrep = e.n === 0, isLast = !sched().some(x=>x.n === e.n + 1);
-  cells.push('<button class="k meal" type="button" data-s="tonight" data-type="night" data-done="'+(allDone(tk)?'1':'0')+'">'+
+  const tile = '<button class="k meal" type="button" data-s="tonight" data-type="night" data-done="'+(allDone(tk)?'1':'0')+'">'+
     '<span class="band"></span><span class="tick" style="--p:'+pct(tk)+'"></span>'+
-    '<span class="m-t">'+(isPrep?'START':isLast?'AFTER':'TONIGHT')+'</span>'+
-    '<span class="m-n">'+(isPrep?'Get set for Day 1':isLast?'After the detox':'Get ready for tomorrow')+'</span>'+
-    '<span class="m-c">'+(bk.length ? bk.length+' to get · '+nk.length+' to prep' : nk.length+' steps')+'</span></button>');
+    '<span class="m-t">'+(!isSeq()?'SHOP':isPrep?'START':isLast?'AFTER':'TONIGHT')+'</span>'+
+    '<span class="m-n">'+(!isSeq()?'What you need':isPrep?'Get set for Day 1':isLast?'After the detox':'Get ready for tomorrow')+'</span>'+
+    '<span class="m-c">'+(bk.length ? bk.length+' to get'+(nk.length?' · '+nk.length+' to prep':'') : nk.length+' steps')+'</span></button>';
+  if(isSeq()) cells.push(tile); else cells.unshift(tile);
 
   const ks = dayKeys(e);
   document.getElementById('dayBody').innerHTML =
     '<div class="anim"><div class="hd">'+
       '<p class="eyebrow">'+plan().name+'</p>'+
-      '<h1>'+(e.n===0 ? 'Day 0 · Get set' : 'Day '+e.n+' · '+t.name)+'</h1>'+
-      '<div class="badges"><span class="kind '+(t.type==='g'?'g':t.type==='prep'?'p':'')+'">'+(t.type==='gf'?'Grain-free':t.type==='prep'?'Before you start':'Grain day')+'</span>'+
+      '<h1>'+(e.n===0 ? 'Day 0 · Get set' : unit()+' '+e.n+' · '+t.name)+'</h1>'+
+      '<div class="badges">'+(function(){const k=t.kind||(t.type==='gf'?'Grain-free':t.type==='g'?'Grain day':t.type==='prep'?'Before you start':'');return k?'<span class="kind '+(t.type==='g'?'g':t.type==='prep'?'p':'')+'">'+k+'</span>':'';})()+
         '</div>'+
     '</div>'+
     '<div class="slim"><i style="width:'+pct(ks)+'%"></i></div>'+
@@ -804,12 +1039,12 @@ function renderDay(){
     (allDone(ks) ? '<div class="cleared"><b>Day '+e.n+' cleared.</b><span>Every step and every plate.</span></div>' : '')+
     (function(){
       const pd = sched().find(x=>x.n===e.n-1), nd = sched().find(x=>x.n===e.n+1);
-      const lab = d0 => 'Day '+d0.n+' · '+plan().days[d0.key].name;
+      const lab = d0 => unit()+' '+d0.n+' · '+plan().days[d0.key].name, u = unit().toLowerCase();
       return '<div class="prevnext">'+
         '<button class="pnbtn" type="button" id="dPrev"'+(pd?'':' disabled')+'>'+
-          '<span class="pn-l">Previous day</span>'+(pd?lab(pd):'—')+'</button>'+
+          '<span class="pn-l">Previous '+u+'</span>'+(pd?lab(pd):'—')+'</button>'+
         '<button class="pnbtn next" type="button" id="dNext"'+(nd?'':' disabled')+'>'+
-          '<span class="pn-l">Next day</span>'+(nd?lab(nd):'—')+'</button></div>';
+          '<span class="pn-l">Next '+u+'</span>'+(nd?lab(nd):'—')+'</button></div>';
     })()+
     '</div>';
   const hop = d => { state.day = state.day + d; save(); renderDay(); updateNav(); window.scrollTo(0,0); };
@@ -846,13 +1081,13 @@ function renderMeal(){
   let title, when, folds;
 
   if(si === 'tonight'){
-    const b = shopFor(e), n = nightOf(e), isPrep = e.n === 0;
+    const b = shopFor(e), n = nightOf(e), isPrep = e.n === 0, seqp = isSeq();
     const col = (arr, cat) => '<ul>'+arr.map((it,i)=>{
         const id = K(e,'b'+cat+i);
         return '<li><input type="checkbox" id="'+id+'" data-k="'+id+'"'+(ck(id)?' checked':'')+'><label for="'+id+'">'+it+'</label></li>';
       }).join('')+'</ul>';
-    title = isPrep ? 'Get set' : (shopFor(e) ? 'Tonight' : 'After the detox');
-    when  = isPrep ? 'Before the plan starts' : 'Sets up ' + n.head;
+    title = !seqp ? 'What you need' : isPrep ? 'Get set' : (b ? 'Tonight' : 'After the detox');
+    when  = !seqp ? 'Everything this option calls for' : isPrep ? 'Before the plan starts' : 'Sets up ' + n.head;
     folds = '';
     if(b){
       const groups = [['veg','Fruit & vegetables','v'],['pantry','From the pantry','p'],['dairy','Dairy','d']]
@@ -861,7 +1096,7 @@ function renderMeal(){
       const body = groups.map(g=>'<div class="buycol"><span class="eyebrow">'+g[1]+'</span>'+col(b[g[0]], g[2])+'</div>').join('');
       folds += foldHTML('shop', 'Have in by morning', total+' items', body, allDone(buyKeys(e)));
     }
-    folds += foldHTML('prep', isPrep ? 'Soak & set tonight' : (shopFor(e) ? 'Soak & set tonight' : 'What happens next'),
+    if(n) folds += foldHTML('prep', b ? 'Soak & set tonight' : 'What happens next',
       n.tasks.length+' steps',
       n.tasks.map((st,i)=> stepHTML(K(e,'n'+i), st)).join('') + '<p class="qfoot">'+n.foot+'</p>',
       allDone(nightKeys(e)), 'night');
@@ -890,13 +1125,13 @@ function renderMeal(){
   const at = seq.findIndex(x=> x.n===e.n && String(x.slot)===String(si));
   const nameOf = it => {
     const de = sched().find(x=>x.n===it.n), dt = plan().days[de.key];
-    const nm = it.slot==='tonight' ? (it.n===0 ? 'Get set' : 'Tonight') : dt.slots[it.slot].label;
-    return it.n===e.n ? nm : 'Day '+it.n+' · '+nm;
+    const nm = it.slot==='tonight' ? (!isSeq() ? 'What you need' : it.n===0 ? 'Get set' : 'Tonight') : dt.slots[it.slot].label;
+    return it.n===e.n ? nm : unit()+' '+it.n+' · '+nm;
   };
 
   document.getElementById('mealBody').innerHTML =
     '<div class="anim"><div class="hd">'+
-      '<p class="eyebrow">'+(e.n===0 ? 'Day 0 · Sunday' : 'Day '+e.n+' · '+t.name)+'</p>'+
+      '<p class="eyebrow">'+(e.n===0 ? 'Day 0 · Sunday' : unit()+' '+e.n+' · '+t.name)+'</p>'+
       '<h1>'+title+'</h1><div class="badges"><span class="when">'+when+'</span></div>'+
     '</div>'+ folds +
     '<div class="prevnext">'+
@@ -967,7 +1202,7 @@ function updateNav(){
   const crumb = document.getElementById('crumb');
   const prog = document.getElementById('navprog');
   back.hidden = state.view === 'plans';
-  const labels = {plans:'', days:'Plans', day:plan().name, meal:'Day '+state.day};
+  const labels = {plans:'', days:'Plans', day:plan().name, meal:unit()+' '+state.day};
   document.getElementById('backlab').textContent = labels[state.view] || 'Back';
 
   const e = entry(), t = tpl(e);
@@ -978,12 +1213,12 @@ function updateNav(){
     prog.textContent = s.done + '/' + s.total + ' days';
   } else if(state.view === 'day'){
     const ks = dayKeys(e);
-    crumb.textContent = 'DAY ' + e.n + ' · ' + t.wd;
+    crumb.textContent = unit().toUpperCase()+' ' + e.n + ' · ' + t.wd;
     prog.textContent = ks.filter(ck).length + '/' + ks.length;
   } else {
     const si = state.slot;
-    const nm = si==='tonight' ? (e.n===0 ? 'GET SET' : 'TONIGHT') : t.slots[si].label.toUpperCase();
-    crumb.textContent = (e.n===0 ? 'DAY 0' : 'DAY ' + e.n) + ' · ' + nm;
+    const nm = si==='tonight' ? (!isSeq() ? 'WHAT YOU NEED' : e.n===0 ? 'GET SET' : 'TONIGHT') : t.slots[si].label.toUpperCase();
+    crumb.textContent = (e.n===0 ? 'DAY 0' : unit().toUpperCase()+' ' + e.n) + ' · ' + nm;
     const ks = si==='tonight' ? tonightKeys(e) : slotKeys(e,si);
     prog.textContent = ks.filter(ck).length + '/' + ks.length;
   }

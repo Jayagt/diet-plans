@@ -619,12 +619,7 @@ const SCHEDULE = [
    LOW CARBS — seven interchangeable daily options, not a sequence.
    Pick any one on any day, for three weeks, and shuffle freely.
    ============================================================ */
-const LC_WATER = [
-  {t:'5:45 am', d:'Boil 1 tsp jeera and 1 tsp dhaniya in 250 ml of water for 5 minutes, then strain.'},
-  {t:'6:00 am', d:'Drink it warm. <i>Alternative: ½ tsp turmeric, 1 tsp jeera, 1 tsp fennel and ½ tsp ajwain boiled in 250 ml for 5 minutes, strained.</i>'}
-];
 const LC_WATER_EAT = [{n:'Jeera and dhaniya boiled water', q:'200 ml'}];
-const LC_CHIA = t => ({t:'10:40 am', d:'Stir chia into '+t+' of water and leave it 20 minutes to gel.'});
 
 const L = {};
 
@@ -636,27 +631,12 @@ L.o1 = {
     dairy:['Curd — small cup, plus buttermilk','Eggs — 2']
   },
   slots:[
-    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'7:30 am', d:'Grate carrot and beetroot, chop a tomato, and stir them <b>into the batter</b> — the vegetables go in, not on the side.'},
-      {t:'7:45 am', d:'Peanut chutney: dry-roast 50 g peanuts, rub off the skins, grind with red chilli, a little tamarind and salt.'},
-      {t:'7:50 am', d:'Boil 2 eggs.'},
-      {t:'8:00 am', d:'One dosa on a hot tawa.'}
-    ], eat:[{n:'Home-made vegetable dosa', q:'1'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Boiled egg', q:'2 · if possible'}]},
-    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml'),{t:'11:00 am', d:'Cut 4–5 cubes of watermelon.'}],
-      eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Watermelon', q:'4–5 cubes'}]},
-    {t:'1:00 pm', label:'Lunch', do:[
-      {t:'8:00 am', d:'<b>Green gram usali</b> — soak ½ cup whole green gram, boil it soft, temper with mustard, curry leaves and grated coconut. It appears again at dinner, so make both katoris now.'},
-      {t:'12:15 pm', d:'Hirekai palya from the ridge gourd.'},
-      {t:'12:45 pm', d:'Two small chapatis.'}
-    ], eat:[{n:'Chapati', q:'2 small'},{n:'Hirekai palya', q:'1 katori'},{n:'Green gram usali', q:'1 katori · mandatory'},{n:'Curd', q:'small cup'}]},
-    {t:'5:00 pm', label:'Tea', do:[{t:'5:00 pm', d:'Coffee, no sugar. Weigh the chana rather than taking a handful.'}],
-      eat:[{n:'Coffee without sugar', q:'1 cup · 100 ml'},{n:'Roasted chana', q:'30 g'}]},
-    {t:'6:30 pm', label:'Dinner', do:[
-      {t:'6:10 pm', d:'Slice carrot and cucumber for the salad.'},
-      {t:'6:20 pm', d:'One phulka, no oil. Warm the second katori of green gram usali.'},
-      {t:'6:25 pm', d:'Whisk buttermilk and stir in a spoon of flaxseed powder.'}
-    ], eat:[{n:'Phulka, without oil', q:'1'},{n:'Carrot and cucumber salad', q:'1 cup'},{n:'Green gram usali', q:'1 katori · 150 g'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]}
+    {t:'6:00 am', label:'Detox water', do:[], eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Home-made vegetable dosa', q:'1'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Boiled egg', q:'2 · if possible'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Watermelon', q:'4–5 cubes'}]},
+    {t:'1:00 pm', label:'Lunch', do:[], eat:[{n:'Chapati', q:'2 small'},{n:'Hirekai palya', q:'1 katori'},{n:'Green gram usali', q:'1 katori · mandatory'},{n:'Curd', q:'small cup'}]},
+    {t:'5:00 pm', label:'Tea', do:[], eat:[{n:'Coffee without sugar', q:'1 cup · 100 ml'},{n:'Roasted chana', q:'30 g'}]},
+    {t:'6:30 pm', label:'Dinner', do:[], eat:[{n:'Phulka, without oil', q:'1'},{n:'Carrot and cucumber salad', q:'1 cup'},{n:'Green gram usali', q:'1 katori · 150 g'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]}
   ]
 };
 
@@ -668,25 +648,12 @@ L.o2 = {
     dairy:['Curd — 1 katori, plus buttermilk','Milk for the coffee']
   },
   slots:[
-    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
-    {t:'9:00 am', label:'Breakfast', do:[
-      {t:'8:15 am', d:'Sambar — cook toor dal soft with vegetables, tamarind and sambar powder. Make enough for breakfast and the methi sambar at lunch.'},
-      {t:'8:45 am', d:'Steam the idlis.'}
-    ], eat:[{n:'Idli', q:'3 · if they are small'},{n:'Sambar', q:'1 cup'}]},
-    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Grapes', q:'4'}]},
-    {t:'1:00 pm', label:'Lunch', do:[
-      {t:'12:00 pm', d:'Cook the brown rice. <b>Measure 150 g cooked</b> and put the rest away.'},
-      {t:'12:20 pm', d:'Add chopped methi to a cup of the morning sambar.'},
-      {t:'12:35 pm', d:'Carrot and beans palya — 150 g.'},
-      {t:'12:50 pm', d:'Buttermilk with a spoon of flaxseed powder.'}
-    ], eat:[{n:'Brown rice', q:'150 g'},{n:'Methi sambar', q:'1 cup'},{n:'Carrot and beans palya', q:'150 g'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]},
-    {t:'5:00 pm', label:'Tea', do:[{t:'5:30 pm', d:'Coffee with milk, no sugar. Makhana at 5:30.'}],
-      eat:[{n:'Coffee with milk, without sugar', q:'1 cup'},{n:'Roasted makhana', q:'30 g'}]},
-    {t:'7:00 pm', label:'Dinner', do:[
-      {t:'6:30 pm', d:'Dal methi — 2 katori.'},
-      {t:'6:45 pm', d:'Kosumbari: grate carrot and cucumber, add lemon and coriander.'},
-      {t:'6:55 pm', d:'One chapati, phulka for preference.'}
-    ], eat:[{n:'Chapati', q:'1 · preferably phulka'},{n:'Dal methi', q:'2 katori'},{n:'Carrot and cucumber kosumbari', q:'1 cup'},{n:'Curd', q:'1 katori'}]}
+    {t:'6:00 am', label:'Detox water', do:[], eat:LC_WATER_EAT},
+    {t:'9:00 am', label:'Breakfast', do:[], eat:[{n:'Idli', q:'3 · if they are small'},{n:'Sambar', q:'1 cup'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Grapes', q:'4'}]},
+    {t:'1:00 pm', label:'Lunch', do:[], eat:[{n:'Brown rice', q:'150 g'},{n:'Methi sambar', q:'1 cup'},{n:'Carrot and beans palya', q:'150 g'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]},
+    {t:'5:00 pm', label:'Tea', do:[], eat:[{n:'Coffee with milk, without sugar', q:'1 cup'},{n:'Roasted makhana', q:'30 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[], eat:[{n:'Chapati', q:'1 · preferably phulka'},{n:'Dal methi', q:'2 katori'},{n:'Carrot and cucumber kosumbari', q:'1 cup'},{n:'Curd', q:'1 katori'}]}
   ]
 };
 
@@ -698,22 +665,12 @@ L.o3 = {
     dairy:['Paneer — 100 g','Curd — 1 cup, plus raita']
   },
   slots:[
-    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'7:30 am', d:'Raagi rotti dough: raagi flour with grated carrot, onion, coriander and salt. Pat it out thin, cook <b>without oil</b>.'},
-      {t:'7:50 am', d:'Cube and dry-roast 100 g paneer.'}
-    ], eat:[{n:'Raagi vegetable rotti, without oil', q:'2 small'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Roasted paneer', q:'100 g'}]},
-    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Apple', q:'1'}]},
-    {t:'1:00 pm', label:'Lunch', do:[
-      {t:'12:15 pm', d:'Vegetable peas palav — keep it to 200 g on the plate.'},
-      {t:'12:45 pm', d:'Cucumber and tomato raita, 200 g.'}
-    ], eat:[{n:'Vegetable peas palav', q:'200 g'},{n:'Cucumber and tomato raita', q:'200 g'}]},
-    {t:'5:00 pm', label:'Tea', do:[{t:'5:30 pm', d:'Coffee, no sugar. Roasted mixed seeds at 5:30 — 15 g weighed.'}],
-      eat:[{n:'Coffee without sugar', q:'1 cup'},{n:'Roasted mixed seeds', q:'15 g'}]},
-    {t:'7:00 pm', label:'Dinner', do:[
-      {t:'6:30 pm', d:'Cabbage and moong dal palya.'},
-      {t:'6:50 pm', d:'Raagi and wheat dose, one, <b>without oil</b>.'}
-    ], eat:[{n:'Raagi and wheat dose, without oil', q:'1'},{n:'Cabbage and moong dal palya', q:'1 cup'},{n:'Curd', q:'1 cup'}]}
+    {t:'6:00 am', label:'Detox water', do:[], eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Raagi vegetable rotti, without oil', q:'2 small'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Roasted paneer', q:'100 g'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Apple', q:'1'}]},
+    {t:'1:00 pm', label:'Lunch', do:[], eat:[{n:'Vegetable peas palav', q:'200 g'},{n:'Cucumber and tomato raita', q:'200 g'}]},
+    {t:'5:00 pm', label:'Tea', do:[], eat:[{n:'Coffee without sugar', q:'1 cup'},{n:'Roasted mixed seeds', q:'15 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[], eat:[{n:'Raagi and wheat dose, without oil', q:'1'},{n:'Cabbage and moong dal palya', q:'1 cup'},{n:'Curd', q:'1 cup'}]}
   ]
 };
 
@@ -725,23 +682,12 @@ L.o4 = {
     dairy:['Curd','Paneer — 5 cubes','Milk for the coffee']
   },
   slots:[
-    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
-    {t:'9:00 am', label:'Breakfast', do:[
-      {t:'8:30 am', d:'ABC juice — apple, beetroot and carrot, blended to 250 ml. Do not filter it.'},
-      {t:'8:45 am', d:'Dry-roast the rava and cook the upma with vegetables. Boil a katori of peas.'}
-    ], eat:[{n:'ABC juice', q:'250 ml'},{n:'Vegetable upma', q:'150 g'},{n:'Boiled peas', q:'1 katori'}]},
-    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Papaya', q:'1 cup'}]},
-    {t:'2:00 pm', label:'Lunch', do:[
-      {t:'1:15 pm', d:'Cook the brown rice and the sambar.'},
-      {t:'1:35 pm', d:'Cabbage palya, and a cup of mixed vegetables.'}
-    ], eat:[{n:'Brown rice', q:'1 cup'},{n:'Mixed vegetables', q:'1 cup'},{n:'Sambar', q:'1 cup'},{n:'Cabbage palya', q:'1 katori'},{n:'Curd', q:''}]},
-    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee with milk, no sugar. 15 g roasted nuts, weighed.'}],
-      eat:[{n:'Coffee with milk, without sugar', q:'100 ml'},{n:'Roasted nuts', q:'15 g'}]},
-    {t:'7:00 pm', label:'Dinner', do:[
-      {t:'6:30 pm', d:'Mixed vegetable sambar — 250 g.'},
-      {t:'6:45 pm', d:'Dry-roast 5 cubes of paneer. One phulka, no oil.'},
-      {t:'6:55 pm', d:'Buttermilk with flaxseed powder.'}
-    ], eat:[{n:'Chapati, phulka without oil', q:'1'},{n:'Mixed vegetable sambar', q:'250 g'},{n:'Roasted paneer', q:'5 cubes'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]}
+    {t:'6:00 am', label:'Detox water', do:[], eat:LC_WATER_EAT},
+    {t:'9:00 am', label:'Breakfast', do:[], eat:[{n:'ABC juice', q:'250 ml'},{n:'Vegetable upma', q:'150 g'},{n:'Boiled peas', q:'1 katori'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Papaya', q:'1 cup'}]},
+    {t:'2:00 pm', label:'Lunch', do:[], eat:[{n:'Brown rice', q:'1 cup'},{n:'Mixed vegetables', q:'1 cup'},{n:'Sambar', q:'1 cup'},{n:'Cabbage palya', q:'1 katori'},{n:'Curd', q:''}]},
+    {t:'4:00 pm', label:'Tea', do:[], eat:[{n:'Coffee with milk, without sugar', q:'100 ml'},{n:'Roasted nuts', q:'15 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[], eat:[{n:'Chapati, phulka without oil', q:'1'},{n:'Mixed vegetable sambar', q:'250 g'},{n:'Roasted paneer', q:'5 cubes'},{n:'Buttermilk with flaxseed powder', q:'1 glass'}]}
   ]
 };
 
@@ -753,24 +699,12 @@ L.o5 = {
     dairy:['Curd for the raita, plus buttermilk','Eggs — 1']
   },
   slots:[
-    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
-    {t:'9:00 am', label:'Breakfast', do:[
-      {t:'⚑ 8:00 am', d:'<b>Soak ¾ cup rajma now</b> — it needs the morning in water before it will cook soft for lunch.', flag:true},
-      {t:'8:30 am', d:'Rava idli batter — rava, curd and a pinch of soda, rested 20 minutes, then steamed.'},
-      {t:'8:45 am', d:'Mixed vegetable sagu. Boil one egg.'}
-    ], eat:[{n:'Rava idli', q:'2'},{n:'Mixed vegetable sagu', q:'1 katori'},{n:'Boiled egg', q:'1 · if possible'}]},
-    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Apple', q:'2–3 slices'}]},
-    {t:'1:00 pm', label:'Lunch', do:[
-      {t:'12:00 pm', d:'Cook the soaked rajma soft and make the curry.'},
-      {t:'12:35 pm', d:'Two medium chapatis <b>or</b> 200 g of cooked brown or red rice — one or the other, not both.'},
-      {t:'12:50 pm', d:'Cucumber, onion and tomato salad. Buttermilk with flaxseed powder.'}
-    ], eat:[{n:'Chapati 2 medium, or cooked brown/red rice 200 g', q:'pick one'},{n:'Rajma curry', q:'1 cup'},{n:'Cucumber, onion and tomato salad', q:''},{n:'Buttermilk with flaxseed powder', q:'250 ml'}]},
-    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee, no sugar. 20 g roasted peanuts.'}],
-      eat:[{n:'Coffee without sugar', q:'100 ml'},{n:'Roasted peanut', q:'20 g'}]},
-    {t:'7:00 pm', label:'Dinner', do:[
-      {t:'6:30 pm', d:'Pongal from rice and moong dal, cooked soft with pepper and jeera. <b>Measure 150 g.</b>'},
-      {t:'6:50 pm', d:'Beetroot raita.'}
-    ], eat:[{n:'Moong dal and rice pongal', q:'150 g'},{n:'Beetroot raita', q:'1 cup'}]}
+    {t:'6:00 am', label:'Detox water', do:[], eat:LC_WATER_EAT},
+    {t:'9:00 am', label:'Breakfast', do:[], eat:[{n:'Rava idli', q:'2'},{n:'Mixed vegetable sagu', q:'1 katori'},{n:'Boiled egg', q:'1 · if possible'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Apple', q:'2–3 slices'}]},
+    {t:'1:00 pm', label:'Lunch', do:[], eat:[{n:'Chapati 2 medium, or cooked brown/red rice 200 g', q:'pick one'},{n:'Rajma curry', q:'1 cup'},{n:'Cucumber, onion and tomato salad', q:''},{n:'Buttermilk with flaxseed powder', q:'250 ml'}], note:'Rajma needs soaking well ahead of lunch.'},
+    {t:'4:00 pm', label:'Tea', do:[], eat:[{n:'Coffee without sugar', q:'100 ml'},{n:'Roasted peanut', q:'20 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[], eat:[{n:'Moong dal and rice pongal', q:'150 g'},{n:'Beetroot raita', q:'1 cup'}]}
   ]
 };
 
@@ -782,22 +716,13 @@ L.o6 = {
     dairy:['Paneer — 75 g, low fat and high protein','Buttermilk']
   },
   slots:[
-    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'7:30 am', d:'Mixed vegetable sambar.'},
-      {t:'7:50 am', d:'Two dosas, <b>no oil</b>. Peanut chutney.'}
-    ], eat:[{n:'Regular dosa, no oil', q:'2'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Mixed vegetable sambar', q:'1 cup'}]},
-    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'1 glass'}]},
-    {t:'1:00 pm', label:'Lunch', do:[
-      {t:'12:15 pm', d:'Huralikalu palya — soak the horse gram ahead if it is not already done.'},
-      {t:'12:45 pm', d:'Methi roti, two, <b>without oil</b>.'}
-    ], eat:[{n:'Methi roti, without oil', q:'2'},{n:'Huralikalu palya', q:'1 cup'},{n:'Buttermilk with flaxseed powder', q:'200 ml'}]},
-    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee, no sugar. 30 g roasted makhana.'}],
-      eat:[{n:'Coffee without sugar', q:'1 cup · 100 ml'},{n:'Roasted makhana', q:'30 g'}]},
-    {t:'7:00 pm', label:'Dinner', do:[
-      {t:'6:40 pm', d:'Stir fry the vegetables hard and fast, then fold through <b>75 g of low-fat, high-protein paneer</b>. No grain tonight.'}
-    ], eat:[{n:'Stir-fried vegetables with paneer', q:'1 bowl · 75 g paneer'}]},
-    {t:'10:00 pm', label:'Bedtime', do:[{t:'9:40 pm', d:'Chia in water, 20 minutes ahead.'}], eat:[{n:'Chia seeds water', q:'1 glass'}]}
+    {t:'6:00 am', label:'Detox water', do:[], eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Regular dosa, no oil', q:'2'},{n:'Peanut chutney', q:'1 tbsp'},{n:'Mixed vegetable sambar', q:'1 cup'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia seeds water', q:'1 glass'}]},
+    {t:'1:00 pm', label:'Lunch', do:[], eat:[{n:'Methi roti, without oil', q:'2'},{n:'Huralikalu palya', q:'1 cup'},{n:'Buttermilk with flaxseed powder', q:'200 ml'}]},
+    {t:'4:00 pm', label:'Tea', do:[], eat:[{n:'Coffee without sugar', q:'1 cup · 100 ml'},{n:'Roasted makhana', q:'30 g'}]},
+    {t:'7:00 pm', label:'Dinner', do:[], eat:[{n:'Stir-fried vegetables with paneer', q:'1 bowl · 75 g paneer'}]},
+    {t:'10:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia seeds water', q:'1 glass'}]}
   ]
 };
 
@@ -809,24 +734,13 @@ L.o7 = {
     dairy:['Curd — 1 katori','Paneer — 50 g']
   },
   slots:[
-    {t:'6:00 am', label:'Detox water', do:LC_WATER, eat:LC_WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'⚑ 7:00 am', d:'<b>Soak the chana, moong and rajma for dinner</b> — they need five hours in water before boiling. Chana just 30 g, not more.', flag:true},
-      {t:'7:40 am', d:'Coconut chutney.'},
-      {t:'7:55 am', d:'Two raagi dosas.'}
-    ], eat:[{n:'Raagi dosa', q:'2'},{n:'Coconut chutney', q:'1 tbsp'}]},
-    {t:'11:00 am', label:'Mid-morning', do:[LC_CHIA('250 ml')], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Muskmelon', q:'1 cup'}]},
-    {t:'1:00 pm', label:'Lunch', do:[
-      {t:'12:15 pm', d:'Rajma curry.'},
-      {t:'12:40 pm', d:'Akki rotti, two small, patted thin.'},
-      {t:'12:55 pm', d:'Cucumber, carrot, onion and tomato salad.'}
-    ], eat:[{n:'Akki rotti', q:'2 small'},{n:'Rajma curry', q:'1 cup'},{n:'Cucumber, carrot, onion and tomato salad', q:'1 cup'},{n:'Curd', q:'1 katori'}]},
-    {t:'4:00 pm', label:'Tea', do:[{t:'4:00 pm', d:'Coffee, no sugar.'}], eat:[{n:'Coffee without sugar', q:'100 ml'}]},
-    {t:'7:00 pm', label:'Dinner', do:[
-      {t:'6:15 pm', d:'Boil the soaked chana, moong and rajma until soft, then drain well.'},
-      {t:'6:40 pm', d:'Chop onion, tomato and cucumber through them to make a salad. Add 50 g paneer. <b>No grain tonight.</b>'}
-    ], eat:[{n:'Chana, moong and rajma salad', q:'250 g'},{n:'Paneer', q:'50 g'}]},
-    {t:'10:00 pm', label:'Bedtime', do:[{t:'9:40 pm', d:'Chia in water, 20 minutes ahead.'}], eat:[{n:'Chia seeds water', q:'200 ml'}]}
+    {t:'6:00 am', label:'Detox water', do:[], eat:LC_WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Raagi dosa', q:'2'},{n:'Coconut chutney', q:'1 tbsp'}]},
+    {t:'11:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia seeds water', q:'250 ml'},{n:'Muskmelon', q:'1 cup'}]},
+    {t:'1:00 pm', label:'Lunch', do:[], eat:[{n:'Akki rotti', q:'2 small'},{n:'Rajma curry', q:'1 cup'},{n:'Cucumber, carrot, onion and tomato salad', q:'1 cup'},{n:'Curd', q:'1 katori'}]},
+    {t:'4:00 pm', label:'Tea', do:[], eat:[{n:'Coffee without sugar', q:'100 ml'}]},
+    {t:'7:00 pm', label:'Dinner', do:[], eat:[{n:'Chana, moong and rajma salad', q:'250 g'},{n:'Paneer', q:'50 g'}], note:'The chana, moong and rajma are soaked for five hours and then boiled — start them in the morning. Chana just 30 g, not more.'},
+    {t:'10:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia seeds water', q:'200 ml'}]}
   ]
 };
 
@@ -1015,7 +929,7 @@ function renderDay(){
     return '<button class="k meal" type="button" data-s="'+si+'" data-done="'+(allDone(ks)?'1':'0')+'">'+
       '<span class="band"></span><span class="tick" style="--p:'+pct(ks)+'"></span>'+
       '<span class="m-t">'+s.t+'</span><span class="m-n">'+s.label+'</span>'+
-      '<span class="m-c">'+s.do.length+' prep · '+s.eat.length+' on plate</span></button>';
+      '<span class="m-c">'+(s.do.length ? s.do.length+' prep · '+s.eat.length+' on plate' : s.eat.length+' on the plate')+'</span></button>';
   });
   const tk = tonightKeys(e), bk = buyKeys(e), nk = nightKeys(e);
   const isPrep = e.n === 0, isLast = !sched().some(x=>x.n === e.n + 1);
@@ -1055,7 +969,7 @@ function renderDay(){
   document.getElementById('mealGrid').addEventListener('click', ev=>{
     const b = ev.target.closest('.k.meal'); if(!b) return;
     state.slot = (b.dataset.s === 'tonight') ? 'tonight' : Number(b.dataset.s);
-    state.open = null;
+    state.open = onlyOneFold(e, state.slot) ? '*' : null;
     go('meal');
   });
 }
@@ -1063,13 +977,19 @@ function renderDay(){
 /* ============================================================
    LEVEL 4 — the meal itself, prep behind its own tap
    ============================================================ */
+/* a slot with nothing to prep has only the plate fold — no point making them tap it */
+function onlyOneFold(e, si){
+  if(si === 'tonight') return !isSeq();
+  const t = plan().days[e.key];
+  return !!(t.slots[si] && t.slots[si].do.length === 0);
+}
 function stepHTML(id, s){
   return '<div class="step'+(s.flag?' flag':'')+'">'+
     '<input type="checkbox" id="'+id+'" data-k="'+id+'"'+(ck(id)?' checked':'')+'>'+
     '<span class="sw">'+s.t+'</span><label for="'+id+'">'+s.d+'</label></div>';
 }
 function foldHTML(name, title, count, body, done, extraClass){
-  const open = state.open === name;
+  const open = state.open === name || state.open === '*';
   return '<div class="fold '+(extraClass||'')+'" data-done="'+(done?'1':'0')+'">'+
     '<button class="fold-b" type="button" data-fold="'+name+'" aria-expanded="'+open+'" aria-controls="fold-'+name+'">'+
       '<h3>'+title+'</h3><span class="fc">'+count+'</span>'+CHEV+'</button>'+
@@ -1105,9 +1025,9 @@ function renderMeal(){
     title = s.label; when = s.t;
     const prepKs = s.do.map((_,i)=>K(e,'s'+si+':do'+i));
     const eatKs  = s.eat.map((_,i)=>K(e,'s'+si+':eat'+i));
-    folds =
+    folds = (s.do.length ?
       foldHTML('prep', 'Prep', s.do.length+' steps',
-        s.do.map((st,i)=> stepHTML(K(e,'s'+si+':do'+i), st)).join(''), allDone(prepKs))+
+        s.do.map((st,i)=> stepHTML(K(e,'s'+si+':do'+i), st)).join(''), allDone(prepKs)) : '')+
       foldHTML('plate', 'On the plate', s.eat.length+' items',
         s.eat.map((it,i)=>{
           const id = K(e,'s'+si+':eat'+i);
@@ -1177,7 +1097,7 @@ function renderMeal(){
 
   const step = d => {
     const it = seq[at + d]; if(!it) return;
-    state.day = it.n; state.slot = it.slot; state.open = null; save();
+    state.day = it.n; state.slot = it.slot; state.open = onlyOneFold(sched().find(x=>x.n===it.n), it.slot) ? '*' : null; save();
     renderMeal(); updateNav(); window.scrollTo(0,0);
   };
   const pv = document.getElementById('pnPrev'), nx = document.getElementById('pnNext');

@@ -291,13 +291,7 @@
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script>
-const WATER_STEPS = [
-  {t:'4:45 am', d:'Put 1 tsp jeera and 1 tsp dhaniya seeds into 1½ glasses of water. Bring it to a boil, then simmer 5 minutes.'},
-  {t:'5:00 am', d:'Strain it into a glass and drink it warm, before anything else.'},
-  {t:'5:30 am', d:'Black coffee, no sugar — thirty minutes after the water, not before.'}
-];
 const WATER_EAT = [{n:'Jeera–dhaniya water', q:'1 glass'},{n:'Black coffee, no sugar', q:'1 cup at 5:30 am'}];
-const CHIA_NIGHT = [{t:'8:40 pm', d:'Stir 5 g chia into 250 ml of water and leave it 20 minutes to gel. Drink it as the last thing.'}];
 
 const D = {};
 
@@ -305,39 +299,19 @@ D.mon = {
   name:'Monday', wd:'MON', type:'gf',
   buy:{
     veg:['Cucumber — 2','Carrot — 1','Cabbage — 1 small','Tomato — 4','Onion — 2','Beans, carrot, beetroot, gobi — 200 g together','Ginger — a thumb','Mint — 1 bunch','Coriander — 1 bunch','Green chilli — 4','Apple — 1'],
-    pantry:['Whole green gram — 1½ cups · soak tonight','Idli rice 1½ cups + urad dal ⅓ cup','Jeera and dhaniya seeds','Chia seeds','Almonds — 4','Groundnuts — 100 g, for the chutney','Coffee powder, green tea'],
+    pantry:['Whole green gram — 1½ cups · soaked overnight','Idli rice 1½ cups + urad dal ⅓ cup','Jeera and dhaniya seeds','Chia seeds','Almonds — 4','Groundnuts — 100 g, for the chutney','Coffee powder, green tea'],
     dairy:['Milk — 1 L, to set tonight’s curd','Curd — 1 cup for dinner','Curd — 2 tbsp as starter']
   },
   slots:[
-    {t:'5:00 am', label:'Detox water', do:WATER_STEPS, eat:WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'5:15 am', d:'Drain the green gram soaked last night. Grind it thick with 2 green chillies and a piece of ginger — idli-batter consistency. <b>Do not ferment.</b> This one grind is all five pesarattu for today.'},
-      {t:'6:30 am', d:'Groundnut chutney: dry-roast 100 g groundnuts, rub off the skins, then grind with 2 dry red chillies, a small piece of tamarind, garlic and salt. Loosen with water. <b>No jaggery</b> — the plan rules it out. Keeps two days in the fridge.'},
-      {t:'7:45 am', d:'Blend 1 cucumber, ½ carrot, ginger and mint with water to 250 ml. <b>Do not filter</b> — if it is too thick, add more water.'},
-      {t:'7:55 am', d:'Spread one pesarattu on a hot tawa. No oil. Cook both sides.'}
-    ], eat:[{n:'Cucumber, carrot, ginger & mint smoothie', q:'250 ml'},{n:'Pesarattu', q:'1 — take 2 if small'},{n:'Groundnut chutney', q:'1 tbsp'}],
+    {t:'5:00 am', label:'Detox water', do:[], eat:WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Cucumber, carrot, ginger & mint smoothie', q:'250 ml'},{n:'Pesarattu', q:'1 — take 2 if small'},{n:'Groundnut chutney', q:'1 tbsp'}],
       note:'Juice first, dosa after. No fruit with breakfast.'},
-    {t:'10:00 am', label:'Mid-morning', do:[
-      {t:'9:40 am', d:'Stir 1 tsp chia into 250 ml of water and leave it 20 minutes to gel. Count out 4 almonds.'}
-    ], eat:[{n:'Chia water', q:'1 glass'},{n:'Almonds', q:'4'}]},
-    {t:'12:00 pm', label:'Lunch', do:[
-            {t:'10:30 am', d:'Cabbage palya: shred the cabbage, temper mustard and curry leaves, cook it dry with turmeric and salt.'},
-      {t:'11:00 am', d:'Tomato tili saru: boil 4 tomatoes with tamarind, jeera and a spoon of ground sesame, thin it into a rasam.'},
-      {t:'11:45 am', d:'Chop cucumber and onion into a cup of curd for the raita.'},
-      {t:'11:55 am', d:'Two small pesarattu from the morning batter.'}
-    ], eat:[{n:'Pesarattu', q:'2 small'},{n:'Cabbage palya', q:'1 cup'},{n:'Tomato tili saru', q:'1 cup'},{n:'Cucumber & onion raita', q:''}]},
-    {t:'2:00 pm', label:'Tea', do:[
-      {t:'2:00 pm', d:'Steep green tea two minutes, or a black coffee. Nothing added. This is the last caffeine of the day.'}
-    ], eat:[{n:'Green tea or black coffee', q:'1 cup'}]},
-    {t:'4:00 pm', label:'Fruit', do:[
-      {t:'4:00 pm', d:'Wash and cut one apple. Eat it on its own — fruit is never taken alongside a meal.'},
-        {t:'4:00 pm', d:'Put 1½ cups idli rice + ⅓ cup urad dal in to soak — <b>4 hours</b>. You grind it at 8 tonight, and tomorrow\u2019s idli comes from it.'}
-    ], eat:[{n:'Apple', q:'1'}]},
-    {t:'6:00 pm', label:'Dinner', do:[
-      {t:'5:30 pm', d:'Steam 200 g of beans, carrot, beetroot and gobi for 8 minutes — or simmer them into a clear soup.'},
-      {t:'5:50 pm', d:'The last pesarattu from the morning batter.'}
-    ], eat:[{n:'Vegetable soup or steamed veggies', q:'200 g'},{n:'Pesarattu', q:'1'},{n:'Curd', q:'1 cup'}]},
-    {t:'9:00 pm', label:'Bedtime', do:CHIA_NIGHT, eat:[{n:'Chia water', q:'1 glass'}]}
+    {t:'10:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia water', q:'1 glass'},{n:'Almonds', q:'4'}]},
+    {t:'12:00 pm', label:'Lunch', do:[], eat:[{n:'Pesarattu', q:'2 small'},{n:'Cabbage palya', q:'1 cup'},{n:'Tomato tili saru', q:'1 cup'},{n:'Cucumber & onion raita', q:''}]},
+    {t:'2:00 pm', label:'Tea', do:[], eat:[{n:'Green tea or black coffee', q:'1 cup'}]},
+    {t:'4:00 pm', label:'Fruit', do:[], eat:[{n:'Apple', q:'1'}]},
+    {t:'6:00 pm', label:'Dinner', do:[], eat:[{n:'Vegetable soup or steamed veggies', q:'200 g'},{n:'Pesarattu', q:'1'},{n:'Curd', q:'1 cup'}]},
+    {t:'9:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia water', q:'1 glass'}]}
   ],
   night:{head:'Tuesday — a grain day', tasks:[
     {t:'8:00 pm', d:'<b>Grind the idli rice and urad dal</b> you put in at 4 pm. Leave the batter somewhere warm overnight to ferment — about <b>8 hours</b>. It should have risen by morning. <b>Do not refrigerate it</b>; use it fresh at breakfast.'},
@@ -356,28 +330,14 @@ D.tue = {
     dairy:['Milk — 1 L, to set tonight’s curd','Paneer — 75 g','Curd from last night — for buttermilk and lunch']
   },
   slots:[
-    {t:'5:00 am', label:'Detox water', do:WATER_STEPS, eat:WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'6:30 am', d:'Sambar: pressure-cook ½ cup toor dal, add mixed vegetables, tamarind and sambar powder. <b>Make three cups</b> — one now, one for lunch, one chilled for Thursday.'},
-      {t:'7:30 am', d:'Steam 3 idlis from the batter that fermented overnight. <b>Use it fresh today</b> — any spare becomes dosas at lunch. It does not go in the fridge.'},
-      {t:'7:45 am', d:'Blend ½ apple, ½ beetroot and ½ carrot to 250 ml. Do not filter.'}
-    ], eat:[{n:'Apple, beetroot & carrot smoothie', q:'250 ml'},{n:'Idli', q:'3'},{n:'Sambar', q:'1 cup'}]},
-    {t:'10:00 am', label:'Mid-morning', do:[
-      {t:'9:45 am', d:'Whisk 3 tbsp of last night’s curd into a glass of water with a pinch of salt and jeera. Keep the rest of the curd thick for lunch.'}
-    ], eat:[{n:'Buttermilk', q:'1 glass'}]},
-    {t:'12:00 pm', label:'Lunch', do:[
-      {t:'11:15 am', d:'Cook the rajmudi rice. <b>Measure out 150 g cooked — three-quarters of a cup</b> — and put the rest away before you sit down.'},
-      {t:'11:30 am', d:'Cauliflower and peas sabji from half the cauliflower.'},
-      {t:'11:50 am', d:'Warm one cup of the morning sambar.'}
-    ], eat:[{n:'Rajmudi rice', q:'150 g · ¾ cup'},{n:'Mixed vegetable sambar', q:'1 cup'},{n:'Cauliflower & peas sabji', q:'1 cup'},{n:'Thick curd', q:'1 cup'}]},
-    {t:'2:00 pm', label:'Tea', do:[{t:'2:00 pm', d:'Herbal, green or black. Nothing after 6 pm.'}], eat:[{n:'Herbal tea / green tea / black coffee', q:'1 cup'}]},
-    {t:'4:00 pm', label:'Fruit', do:[{t:'4:00 pm', d:'Cut one guava, count 5 almonds.'}], eat:[{n:'Guava', q:'1'},{n:'Almonds', q:'5'}]},
-    {t:'6:00 pm', label:'Dinner', do:[
-      {t:'5:30 pm', d:'Knead atta for <b>one and a half chapati only</b>. Roast them dry.'},
-      {t:'5:40 pm', d:'Cube 75 g paneer and sauté it dry — no oil, no gravy.'},
-      {t:'5:45 pm', d:'The second half of the cauliflower as a dry sabji.'}
-    ], eat:[{n:'Chapati', q:'1.5'},{n:'Cauliflower sabji', q:'1 cup'},{n:'Sautéed paneer', q:'75 g'}]},
-    {t:'9:00 pm', label:'Bedtime', do:CHIA_NIGHT, eat:[{n:'Chia water', q:'1 glass'}]}
+    {t:'5:00 am', label:'Detox water', do:[], eat:WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Apple, beetroot & carrot smoothie', q:'250 ml'},{n:'Idli', q:'3'},{n:'Sambar', q:'1 cup'}]},
+    {t:'10:00 am', label:'Mid-morning', do:[], eat:[{n:'Buttermilk', q:'1 glass'}]},
+    {t:'12:00 pm', label:'Lunch', do:[], eat:[{n:'Rajmudi rice', q:'150 g · ¾ cup'},{n:'Mixed vegetable sambar', q:'1 cup'},{n:'Cauliflower & peas sabji', q:'1 cup'},{n:'Thick curd', q:'1 cup'}]},
+    {t:'2:00 pm', label:'Tea', do:[], eat:[{n:'Herbal tea / green tea / black coffee', q:'1 cup'}]},
+    {t:'4:00 pm', label:'Fruit', do:[], eat:[{n:'Guava', q:'1'},{n:'Almonds', q:'5'}]},
+    {t:'6:00 pm', label:'Dinner', do:[], eat:[{n:'Chapati', q:'1.5'},{n:'Cauliflower sabji', q:'1 cup'},{n:'Sautéed paneer', q:'75 g'}]},
+    {t:'9:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia water', q:'1 glass'}]}
   ],
   night:{head:'Wednesday — grain-free', tasks:[
     {t:'7:30 pm', d:'Soak 1 cup split moong dal — tomorrow’s breakfast dose and lunch dosa.'},
@@ -392,34 +352,18 @@ D.wed = {
   name:'Wednesday', wd:'WED', type:'gf',
   buy:{
     veg:['Cucumber — 3','Methi leaves — 2 bunches','Tomato — 3','Onion — 2','Mixed vegetables for curry — 250 g','Ginger, mint','Lemon — 2','Coriander, green chilli'],
-    pantry:['Split moong dal — 1 cup · soak tonight','Whole green gram — 1 cup · soak tonight','Idli rice 1½ cups + urad dal ⅓ cup','Toor dal — ½ cup','Roasted chana — 15 g','Almonds — 6','Chia seeds'],
+    pantry:['Split moong dal — 1 cup · soaked overnight','Whole green gram — 1 cup · soaked overnight','Idli rice 1½ cups + urad dal ⅓ cup','Toor dal — ½ cup','Roasted chana — 15 g','Almonds — 6','Chia seeds'],
     dairy:['Milk — 1 L, to set tonight’s curd','Curd from last night — raita and buttermilk']
   },
   slots:[
-    {t:'5:00 am', label:'Detox water', do:WATER_STEPS, eat:WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'5:30 am', d:'Drain the moong dal. Grind it with green chilli, coriander leaves and jeera to a pourable batter.'},
-      {t:'6:00 am', d:'Drain the green gram, grind it thick, and put it in the fridge — that is tonight’s pesarattu.'},
-      {t:'7:00 am', d:'Methi dal: cook ½ cup toor dal soft, add the chopped methi, temper with jeera and hing. Make about 200 g.'},
-      {t:'7:45 am', d:'Blend 1 cucumber with mint and ginger to a glass. Do not filter.'},
-      {t:'7:55 am', d:'Two moong dal dose on a hot tawa, no oil.'}
-    ], eat:[{n:'Cucumber, mint & ginger smoothie', q:'1 glass'},{n:'Moong dal dose', q:'2'},{n:'Chutney', q:'1 spoon'}]},
-    {t:'10:00 am', label:'Mid-morning', do:[
-      {t:'9:40 am', d:'Chia in water with a squeeze of lemon, left 20 minutes. Six almonds.'}
-    ], eat:[{n:'Chia lemon water', q:'1 glass'},{n:'Almonds', q:'6'}]},
-    {t:'12:00 pm', label:'Lunch', do:[
-            {t:'11:30 am', d:'A bowl of salad or a vegetable curry — 250 g.'},
-      {t:'11:45 am', d:'Two more dose from the morning moong batter.'},
-      {t:'11:55 am', d:'Whisk buttermilk from the curd.'}
-    ], eat:[{n:'Salad or vegetable curry', q:'250 g'},{n:'Moong dal dosa', q:'2'},{n:'Methi dal', q:'1 cup · 200 g'},{n:'Buttermilk', q:'1 glass'}]},
-    {t:'3:00 pm', label:'Tea', do:[{t:'3:00 pm', d:'150 ml only. Last caffeine of the day.'}], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
-    {t:'4:00 pm', label:'Snack', do:[{t:'4:00 pm', d:'Weigh 15 g of roasted chana. On the scale, not by the handful.'},
-      {t:'4:00 pm', d:'Put 1½ cups idli rice + ⅓ cup urad dal in to soak — <b>4 hours</b>, for tomorrow\u2019s dosas. You grind it at 8 tonight. <i>(Not needed on Day 10 — nothing follows it.)</i>'}], eat:[{n:'Roasted chana', q:'15 g'}]},
-    {t:'6:00 pm', label:'Dinner', do:[
-      {t:'5:45 pm', d:'One pesarattu from the batter in the fridge.'},
-      {t:'5:50 pm', d:'Grate cucumber into a cup of curd for the raita.'}
-    ], eat:[{n:'Pesarattu', q:'1'},{n:'Cucumber raita', q:'1 cup'}]},
-    {t:'9:00 pm', label:'Bedtime', do:CHIA_NIGHT, eat:[{n:'Chia water', q:'1 glass'}]}
+    {t:'5:00 am', label:'Detox water', do:[], eat:WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Cucumber, mint & ginger smoothie', q:'1 glass'},{n:'Moong dal dose', q:'2'},{n:'Chutney', q:'1 spoon'}]},
+    {t:'10:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia lemon water', q:'1 glass'},{n:'Almonds', q:'6'}]},
+    {t:'12:00 pm', label:'Lunch', do:[], eat:[{n:'Salad or vegetable curry', q:'250 g'},{n:'Moong dal dosa', q:'2'},{n:'Methi dal', q:'1 cup · 200 g'},{n:'Buttermilk', q:'1 glass'}]},
+    {t:'3:00 pm', label:'Tea', do:[], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
+    {t:'4:00 pm', label:'Snack', do:[], eat:[{n:'Roasted chana', q:'15 g'}]},
+    {t:'6:00 pm', label:'Dinner', do:[], eat:[{n:'Pesarattu', q:'1'},{n:'Cucumber raita', q:'1 cup'}]},
+    {t:'9:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia water', q:'1 glass'}]}
   ],
   night:{head:'Thursday — a grain day', tasks:[
     {t:'⚑ Now', d:'<b>Set an alarm for 6 am: soak 1 cup whole moong for sprouts.</b> Saturday’s breakfast needs them started 48 hours ahead. This is the one thing in the plan that cannot be caught up.', flag:true},
@@ -435,32 +379,18 @@ D.thu = {
   name:'Thursday', wd:'THU', type:'g',
   buy:{
     veg:['Carrot — 3','Apple — 1','Cucumber — 2','Beans — 250 g','Orange — 1','Salad vegetables — 250 g','Green peas — 100 g','Tomato — 3','Onion — 2'],
-    pantry:['Whole moong — 1 cup, for sprouting','Brown rice — ¾ cup · soak tonight','Upma rava — ½ cup','Roasted chana 25 g or makhana 30 g','Toor dal, sambar powder','Chia seeds — 1 tbsp'],
+    pantry:['Whole moong — 1 cup, for sprouting','Brown rice — ¾ cup · soaked overnight','Upma rava — ½ cup','Roasted chana 25 g or makhana 30 g','Toor dal, sambar powder','Chia seeds — 1 tbsp'],
     dairy:['Milk — 1 L, to set tonight’s curd','Curd from last night — buttermilk and dinner']
   },
   slots:[
-    {t:'5:00 am', label:'Detox water', do:WATER_STEPS.concat([
-      {t:'⚑ 6:00 am', d:'<b>Rinse 1 cup of whole moong and cover it with water.</b> These are Saturday’s sprouts. Started any later, they will not be ready.', flag:true}
-    ]), eat:WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'7:00 am', d:'Two dosas from the batter that fermented overnight. No oil.'},
-      {t:'7:10 am', d:'Warm the thawed sambar.'},
-      {t:'7:15 am', d:'Cook the soaked brown rice for lunch.'},
-      {t:'7:30 am', d:'Carrot and beans palya — one batch, half for lunch and half for dinner.'},
-      {t:'7:45 am', d:'Blend ½ carrot, ½ apple and 1 cucumber to 250 ml.'}
-    ], eat:[{n:'Carrot, apple & cucumber juice', q:'250 ml'},{n:'Dosa, no oil', q:'2'},{n:'Sambar', q:'1 cup'}]},
-    {t:'10:00 am', label:'Fruit', do:[{t:'10:00 am', d:'Peel one orange. Nothing with it.'}], eat:[{n:'Orange', q:'1'}]},
-    {t:'12:00 pm', label:'Lunch', do:[
-      {t:'11:30 am', d:'Chop a bowl of salad — 250 g.'},
-      {t:'11:40 am', d:'Warm two cups of sambar. Whisk the buttermilk.'}
-    ], eat:[{n:'Salad', q:'1 bowl · 250 g'},{n:'Brown rice', q:'¾ cup'},{n:'Mixed vegetable sambar', q:'2 cups'},{n:'Carrot & beans palya', q:'1 katori'},{n:'Buttermilk', q:'1 glass'}]},
-    {t:'3:00 pm', label:'Tea', do:[{t:'3:00 pm', d:'150 ml. Last caffeine of the day.'}], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
-    {t:'4:00 pm', label:'Snack', do:[{t:'4:00 pm', d:'25 g roasted chana <b>or</b> 30 g makhana. One, not both.'}], eat:[{n:'Roasted chana 25 g or makhana 30 g', q:''}]},
-    {t:'6:00 pm', label:'Dinner', do:[
-      {t:'5:30 pm', d:'Dry-roast the upma rava, cook it soft with peas. <b>Measure half a katori</b> and put the rest away.'},
-      {t:'5:45 pm', d:'Warm the second half of the palya.'}
-    ], eat:[{n:'Vegetable peas upma', q:'½ katori'},{n:'Carrot & beans palya', q:'1 cup'},{n:'Curd', q:'1 katori'}]},
-    {t:'9:00 pm', label:'Bedtime', do:[{t:'8:40 pm', d:'A bigger dose tonight — 1 tbsp (15 g) of chia in 250 ml of water, 20 minutes ahead.'}], eat:[{n:'Chia water', q:'1 tbsp · 15 g'}]}
+    {t:'5:00 am', label:'Detox water', do:[], eat:WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Carrot, apple & cucumber juice', q:'250 ml'},{n:'Dosa, no oil', q:'2'},{n:'Sambar', q:'1 cup'}]},
+    {t:'10:00 am', label:'Fruit', do:[], eat:[{n:'Orange', q:'1'}]},
+    {t:'12:00 pm', label:'Lunch', do:[], eat:[{n:'Salad', q:'1 bowl · 250 g'},{n:'Brown rice', q:'¾ cup'},{n:'Mixed vegetable sambar', q:'2 cups'},{n:'Carrot & beans palya', q:'1 katori'},{n:'Buttermilk', q:'1 glass'}]},
+    {t:'3:00 pm', label:'Tea', do:[], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
+    {t:'4:00 pm', label:'Snack', do:[], eat:[{n:'Roasted chana 25 g or makhana 30 g', q:''}]},
+    {t:'6:00 pm', label:'Dinner', do:[], eat:[{n:'Vegetable peas upma', q:'½ katori'},{n:'Carrot & beans palya', q:'1 cup'},{n:'Curd', q:'1 katori'}]},
+    {t:'9:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia water', q:'1 tbsp · 15 g'}]}
   ],
   night:{head:'Friday — grain-free', tasks:[
     {t:'⚑ 7:00 pm', d:'<b>Drain this morning’s moong, rinse it, and tie it in a damp muslin cloth.</b> Leave it somewhere warm and dark. Check it tomorrow evening.', flag:true},
@@ -475,27 +405,18 @@ D.fri = {
   name:'Friday', wd:'FRI', type:'gf',
   buy:{
     veg:['Carrot — 2','Cucumber — 3','Beetroot — 1','Tondekai / ivy gourd — 250 g','Mixed vegetables for sambar — 200 g','Tomato — 3','Onion — 2','Lemon — 2','Apple — 1','Coriander'],
-    pantry:['Split moong dal — 1 cup · soak tonight','Toor dal — ½ cup','Roasted chana — 25 g','Almonds — 6','Chia seeds','Groundnuts for chutney'],
+    pantry:['Split moong dal — 1 cup · soaked overnight','Toor dal — ½ cup','Roasted chana — 25 g','Almonds — 6','Chia seeds','Groundnuts for chutney'],
     dairy:['Milk — 1 L, to set tonight’s curd','Curd from last night — lunch katori']
   },
   slots:[
-    {t:'5:00 am', label:'Detox water', do:WATER_STEPS, eat:WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'5:30 am', d:'Drain the moong dal and grind it <b>thick</b>. Pour two into idli moulds and steam 10 minutes. Thin the rest with a little water — that is lunch and dinner.'},
-      {t:'6:30 am', d:'One cup of mixed vegetable sambar.'},
-      {t:'7:00 am', d:'Tondekai palya from the ivy gourd chopped last night.'},
-      {t:'7:45 am', d:'Blend ½ carrot, 1 cucumber and ½ beetroot with lemon juice to 250 ml. Do not filter.'}
-    ], eat:[{n:'Carrot, cucumber & beetroot smoothie', q:'250 ml · with lemon'},{n:'Moong dal idli', q:'2'},{n:'Mixed vegetable sambar', q:'1 cup'}]},
-    {t:'10:00 am', label:'Mid-morning', do:[{t:'9:40 am', d:'Chia with lemon, soaked 20 minutes. Six almonds.'}], eat:[{n:'Chia lemon water', q:'1 glass'},{n:'Almonds', q:'6'}]},
-    {t:'12:00 pm', label:'Lunch', do:[{t:'11:45 am', d:'Two dosas from the thinned moong batter, no oil.'}],
-      eat:[{n:'Tondekai palya', q:'1 cup'},{n:'Moong dal dosa', q:'2'},{n:'Curd', q:'1 katori'}]},
-    {t:'3:00 pm', label:'Tea', do:[{t:'3:00 pm', d:'150 ml. Last caffeine of the day.'}], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
-    {t:'4:00 pm', label:'Snack', do:[{t:'4:00 pm', d:'One apple and 25 g of roasted chana.'}], eat:[{n:'Apple', q:'1'},{n:'Roasted chana', q:'25 g'}]},
-    {t:'6:00 pm', label:'Dinner', do:[
-      {t:'⚑ 5:00 pm', d:'<b>Check the sprouts.</b> Tails should be showing. Rinse them and move them to the fridge — tomorrow’s breakfast depends on it.', flag:true},
-      {t:'5:45 pm', d:'The last of the moong batter — two small, idli or dosa, no oil. Slice cucumber for the salad.'}
-    ], eat:[{n:'Moong dal idli or dosa', q:'2 small'},{n:'Cucumber salad', q:'1 cup'},{n:'Groundnut chutney', q:'1 tbsp'}]},
-    {t:'9:00 pm', label:'Bedtime', do:CHIA_NIGHT, eat:[{n:'Chia water', q:'1 glass'}]}
+    {t:'5:00 am', label:'Detox water', do:[], eat:WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Carrot, cucumber & beetroot smoothie', q:'250 ml · with lemon'},{n:'Moong dal idli', q:'2'},{n:'Mixed vegetable sambar', q:'1 cup'}]},
+    {t:'10:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia lemon water', q:'1 glass'},{n:'Almonds', q:'6'}]},
+    {t:'12:00 pm', label:'Lunch', do:[], eat:[{n:'Tondekai palya', q:'1 cup'},{n:'Moong dal dosa', q:'2'},{n:'Curd', q:'1 katori'}]},
+    {t:'3:00 pm', label:'Tea', do:[], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
+    {t:'4:00 pm', label:'Snack', do:[], eat:[{n:'Apple', q:'1'},{n:'Roasted chana', q:'25 g'}]},
+    {t:'6:00 pm', label:'Dinner', do:[], eat:[{n:'Moong dal idli or dosa', q:'2 small'},{n:'Cucumber salad', q:'1 cup'},{n:'Groundnut chutney', q:'1 tbsp'}]},
+    {t:'9:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia water', q:'1 glass'}]}
   ],
   night:{head:'Saturday — a grain day', tasks:[
     {t:'⚑ 7:00 pm', d:'<b>Sprouts should be ready.</b> Rinse, drain well and refrigerate them in a box for the morning avalakki.', flag:true},
@@ -510,33 +431,18 @@ D.sat = {
   name:'Saturday', wd:'SAT', type:'g',
   buy:{
     veg:['Beetroot — 1','Carrot — 3','Cucumber — 1','Broccoli — 1','Beans — 200 g','Papaya — 1 small','Mixed vegetables for sambar — no potato','Tomato — 3','Onion — 2','Curry leaves, lemon'],
-    pantry:['Thick poha / avalakki — 1 cup','Rajmudi rice — ¾ cup · soak tonight','Rice and moong dal for the pongal','Moong dal — 2 tbsp for kosumbari','Almonds — 6','Chia seeds','Pepper and jeera for the pongal'],
+    pantry:['Thick poha / avalakki — 1 cup','Rajmudi rice — ¾ cup · soaked overnight','Rice and moong dal for the pongal','Moong dal — 2 tbsp for kosumbari','Almonds — 6','Chia seeds','Pepper and jeera for the pongal'],
     dairy:['Milk — 1 L, to set tonight’s curd','Curd from last night — lunch and the raita']
   },
   slots:[
-    {t:'5:00 am', label:'Detox water', do:WATER_STEPS, eat:WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'7:00 am', d:'Rinse the sprouts. Soak the thick poha in water for <b>five minutes only</b>, then drain it — any longer and it turns to paste.'},
-      {t:'7:10 am', d:'Temper mustard and curry leaves, fold the poha and the sprouts through, finish with lemon.'},
-      {t:'7:45 am', d:'Juice ½ beetroot and 1 carrot to 250 ml. Do not filter.'}
-    ], eat:[{n:'Beetroot & carrot juice', q:'250 ml'},{n:'Sprouts avalakki', q:'1 cup'}]},
-    {t:'10:00 am', label:'Mid-morning', do:[
-      {t:'9:40 am', d:'Chia with lemon, soaked 20 minutes. Six almonds.'},
-      {t:'10:00 am', d:'Soak 2 tbsp moong dal for the kosumbari if you didn’t last night — it needs two hours.'}
-    ], eat:[{n:'Chia lemon water', q:'1 glass'},{n:'Almonds', q:'6'}]},
-    {t:'12:00 pm', label:'Lunch', do:[
-      {t:'11:00 am', d:'Cook the soaked rajmudi rice. <b>Measure 150 g cooked</b> and put the rest away.'},
-      {t:'11:15 am', d:'Mixed vegetable sambar — any vegetable <b>except potato</b>.'},
-      {t:'11:45 am', d:'Kosumbari: grate carrot and cucumber, fold in the soaked moong dal, lemon and coriander.'}
-    ], eat:[{n:'Carrot & cucumber kosumbari', q:'1 cup'},{n:'Rajmudi rice', q:'150 g'},{n:'Mixed vegetable sambar', q:'1 cup'},{n:'Curd', q:'1 cup'}]},
-    {t:'2:00 pm', label:'Tea', do:[{t:'2:00 pm', d:'Herbal, green or black.'}], eat:[{n:'Herbal tea / green tea / black coffee', q:'1 cup'}]},
-    {t:'4:00 pm', label:'Fruit', do:[{t:'4:00 pm', d:'Cut the papaya. On its own.'}], eat:[{n:'Papaya', q:'1 bowl'}]},
-    {t:'6:00 pm', label:'Dinner', do:[
-      {t:'5:15 pm', d:'Make the pongal — rice and moong dal cooked soft with pepper and jeera. <b>Measure 100 g.</b>'},
-      {t:'5:30 pm', d:'Steam broccoli, beans and carrot for 8 minutes.'},
-      {t:'5:45 pm', d:'Vegetable raita from the curd.'}
-    ], eat:[{n:'Steamed broccoli, beans & carrot', q:''},{n:'Pongal', q:'100 g'},{n:'Vegetable raita', q:'1 cup'}]},
-    {t:'9:00 pm', label:'Bedtime', do:CHIA_NIGHT, eat:[{n:'Chia water', q:'1 glass'}]}
+    {t:'5:00 am', label:'Detox water', do:[], eat:WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Beetroot & carrot juice', q:'250 ml'},{n:'Sprouts avalakki', q:'1 cup'}]},
+    {t:'10:00 am', label:'Mid-morning', do:[], eat:[{n:'Chia lemon water', q:'1 glass'},{n:'Almonds', q:'6'}]},
+    {t:'12:00 pm', label:'Lunch', do:[], eat:[{n:'Carrot & cucumber kosumbari', q:'1 cup'},{n:'Rajmudi rice', q:'150 g'},{n:'Mixed vegetable sambar', q:'1 cup'},{n:'Curd', q:'1 cup'}]},
+    {t:'2:00 pm', label:'Tea', do:[], eat:[{n:'Herbal tea / green tea / black coffee', q:'1 cup'}]},
+    {t:'4:00 pm', label:'Fruit', do:[], eat:[{n:'Papaya', q:'1 bowl'}]},
+    {t:'6:00 pm', label:'Dinner', do:[], eat:[{n:'Steamed broccoli, beans & carrot', q:''},{n:'Pongal', q:'100 g'},{n:'Vegetable raita', q:'1 cup'}]},
+    {t:'9:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia water', q:'1 glass'}]}
   ],
   night:{head:'Sunday — grain-free', tasks:[
     {t:'7:00 pm', d:'<b>Soak the adai mix in one bowl:</b> ¼ cup chana dal + ¼ cup toor dal + ¼ cup moong dal + 1 tbsp urad dal. One batter makes both the morning adai and the lunch dosa.'},
@@ -550,31 +456,18 @@ D.sun = {
   name:'Sunday', wd:'SUN', type:'gf',
   buy:{
     veg:['Cucumber — 3','Carrot — 2','Beetroot — 1','Drumstick — 3','Pumpkin — 250 g','Tomato — 3','Onion — 3','Mint, coriander, ginger','Lemon — 2','Apple — 1'],
-    pantry:['Adai mix — chana, toor, moong dal + a little urad · soak tonight','Whole green gram — 1 cup · soak tonight','Red chillies, jeera, dhaniya','Almonds — 4','Chia seeds'],
+    pantry:['Adai mix — chana, toor, moong dal + a little urad · soaked overnight','Whole green gram — 1 cup · soaked overnight','Red chillies, jeera, dhaniya','Almonds — 4','Chia seeds'],
     dairy:['Paneer — 75 g','Curd from last night — lunch katori','Milk — 1 L, to set tonight’s curd']
   },
   slots:[
-    {t:'5:00 am', label:'Detox water', do:WATER_STEPS, eat:WATER_EAT},
-    {t:'8:00 am', label:'Breakfast', do:[
-      {t:'5:30 am', d:'Drain the adai mix. Grind it <b>coarse</b> with 2 red chillies, jeera and dhaniya — coarse, not smooth.'},
-      {t:'6:00 am', d:'Drain the green gram, grind it thick and put it in the fridge. That is tonight’s pesarattu.'},
-      {t:'6:30 am', d:'Tomato and onion chutney. Drumstick sambar. Beetroot palya.'},
-      {t:'7:45 am', d:'Blend 1 cucumber with mint, ginger, coriander and lemon to 250 ml.'},
-      {t:'7:55 am', d:'Two adai on a hot tawa, no oil. Thick, cooked slowly.'}
-    ], eat:[{n:'Cucumber, mint, ginger & coriander smoothie', q:'250 ml'},{n:'Adai dosa', q:'2'},{n:'Tomato & onion chutney', q:'1 spoon'}]},
-    {t:'10:00 am', label:'Mid-morning', do:[{t:'10:00 am', d:'Four almonds. Nothing else in this slot today.'}], eat:[{n:'Almonds', q:'4'}]},
-    {t:'12:00 pm', label:'Lunch', do:[
-      {t:'11:30 am', d:'Chop the salad with cucumber and carrot — 250 g.'},
-      {t:'11:45 am', d:'Two small dosas from the same adai batter.'}
-    ], eat:[{n:'Salad with cucumber & carrot', q:'1 bowl · 250 g'},{n:'Mixed dal dosa', q:'2 small'},{n:'Drumstick sambar', q:'1 cup'},{n:'Beetroot palya', q:'1 katori'},{n:'Curd', q:'1 katori'}]},
-    {t:'3:00 pm', label:'Tea', do:[{t:'3:00 pm', d:'150 ml. Last caffeine of the day.'}], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
-    {t:'4:00 pm', label:'Fruit', do:[{t:'4:00 pm', d:'One apple, on its own.'}], eat:[{n:'Apple', q:'1'}]},
-    {t:'6:00 pm', label:'Dinner', do:[
-      {t:'5:00 pm', d:'Pumpkin and carrot soup: boil 250 g pumpkin with 1 carrot, blend it smooth, season with pepper.'},
-      {t:'5:30 pm', d:'Dice 75 g paneer into a vegetable salad.'},
-      {t:'5:45 pm', d:'One pesarattu from the batter in the fridge.'}
-    ], eat:[{n:'Pumpkin & carrot soup', q:'1 bowl'},{n:'Paneer vegetable salad', q:'1 cup'},{n:'Pesarattu', q:'1'}]},
-    {t:'9:00 pm', label:'Bedtime', do:CHIA_NIGHT, eat:[{n:'Chia water', q:'1 glass'}]}
+    {t:'5:00 am', label:'Detox water', do:[], eat:WATER_EAT},
+    {t:'8:00 am', label:'Breakfast', do:[], eat:[{n:'Cucumber, mint, ginger & coriander smoothie', q:'250 ml'},{n:'Adai dosa', q:'2'},{n:'Tomato & onion chutney', q:'1 spoon'}]},
+    {t:'10:00 am', label:'Mid-morning', do:[], eat:[{n:'Almonds', q:'4'}]},
+    {t:'12:00 pm', label:'Lunch', do:[], eat:[{n:'Salad with cucumber & carrot', q:'1 bowl · 250 g'},{n:'Mixed dal dosa', q:'2 small'},{n:'Drumstick sambar', q:'1 cup'},{n:'Beetroot palya', q:'1 katori'},{n:'Curd', q:'1 katori'}]},
+    {t:'3:00 pm', label:'Tea', do:[], eat:[{n:'Herbal tea / green tea / black coffee', q:'150 ml'}]},
+    {t:'4:00 pm', label:'Fruit', do:[], eat:[{n:'Apple', q:'1'}]},
+    {t:'6:00 pm', label:'Dinner', do:[], eat:[{n:'Pumpkin & carrot soup', q:'1 bowl'},{n:'Paneer vegetable salad', q:'1 cup'},{n:'Pesarattu', q:'1'}]},
+    {t:'9:00 pm', label:'Bedtime', do:[], eat:[{n:'Chia water', q:'1 glass'}]}
   ],
   night:{head:'Monday — week two begins', tasks:[
     {t:'⚑ 8:00 pm', d:'<b>Soak 1½ cups whole green gram.</b> Monday needs about five pesarattu across the day — the biggest soak of the plan.', flag:true},
@@ -751,7 +644,7 @@ const LC_SCHEDULE = [
 const PLANS = [
   {id:'detox',
    name:'DetoxTen',
-   unit:'Day', sequential:true, lenLabel:'10 days',
+   unit:'Day', sequential:false, lenLabel:'10 days',
    eyebrow:'Alternating grain-free and grain days',
    title:'Ten days, <em>grain by grain</em>',
    sub:'Pick a day. You get everything to buy for it, and every step of prep timed to the meal it feeds.',
@@ -901,7 +794,7 @@ function renderDays(){
         '</button>';
       }).join('')+
     '</div>'+
-    (isSeq() ? '<div class="legend"><span><i></i> Grain-free</span><span><i class="g"></i> Grain day</span></div>' : '')+'</div>';
+    (sched().some(x=>['g','gf'].includes(tpl(x).type)) ? '<div class="legend"><span><i></i> Grain-free</span><span><i class="g"></i> Grain day</span></div>' : '')+'</div>';
   document.getElementById('dayGrid').addEventListener('click', ev=>{
     const b = ev.target.closest('.k.day'); if(!b) return;
     state.day = Number(b.dataset.n); go('day');

@@ -140,7 +140,7 @@
 
   /* level 1 — plan cards */
   .plans{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-  .k.plan{padding:20px 20px 22px}
+  .k.plan{padding:20px 20px 22px; display:flex; flex-direction:column}
   .k.plan .p-eye{font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:6px}
   .k.plan .p-name{font-family:"Newsreader",serif; font-size:36px; line-height:1.1; margin-top:5px}
   .k.plan .p-len{font-family:"IBM Plex Mono",monospace; font-size:15px; color:var(--ink-2); margin-top:5px}
@@ -152,7 +152,7 @@
   .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
   @media (max-width:520px){ .grid{grid-template-columns:repeat(2,1fr); gap:10px} }
 
-  .k.day{padding:16px 16px 18px}
+  .k.day{padding:16px 16px 18px; display:flex; flex-direction:column}
   .k.day .d-lab{font-family:"IBM Plex Mono",monospace; font-size:11.5px; font-weight:700; letter-spacing:.12em; color:var(--ink-3); margin-top:6px}
   .k.day .d-n{font-family:"Newsreader",serif; font-size:clamp(42px,9vw,62px); line-height:.92; margin-top:2px}
   .k.day .d-wd{font-size:17px; font-weight:800; letter-spacing:.05em; margin-top:7px}
@@ -762,7 +762,7 @@ const LC_SCHEDULE = [
 const PLANS = [
   {id:'detox',
    name:'DetoxTen',
-   unit:'Day', sequential:true, lenLabel:'10 days + a prep evening',
+   unit:'Day', sequential:true, lenLabel:'10 days',
    eyebrow:'Alternating grain-free and grain days',
    title:'Ten days, <em>grain by grain</em>',
    sub:'Pick a day. You get everything to buy for it, and every step of prep timed to the meal it feeds.',
@@ -879,7 +879,7 @@ function renderPlans(){
           '<span class="p-name">'+p.name+'</span>'+
           '<span class="p-len">'+(p.lenLabel || p.schedule.length+' days')+'</span>'+
           '<span class="p-bar"><i style="width:'+s.pct+'%"></i></span>'+
-          '<span class="p-go">'+s.done+' of '+s.total+' days cleared '+ARROW+'</span>'+
+          '<span class="p-go">'+s.done+' of '+s.total+' '+(p.unit||'Day').toLowerCase()+(s.total===1?'':'s')+' done '+ARROW+'</span>'+
         '</button>';
       }).join('')+
     '</div></div>';

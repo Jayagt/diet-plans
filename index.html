@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="A ten-day detox plan you can work through day by day: every meal timed, and every soak set up the night before.">
+<meta name="description" content="Ten-day plans worked through day by day: every meal timed, and every prep step set up the night before.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#F2F5EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111510" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="https://jayagt.github.io/detox-ten/">
+<link rel="canonical" href="https://jayagt.github.io/diet-plans/">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Detox Ten">
-<meta property="og:url" content="https://jayagt.github.io/detox-ten/">
-<meta property="og:title" content="Ten days, grain by grain">
-<meta property="og:description" content="A ten-day detox plan you can work through day by day: every meal timed, and every soak set up the night before.">
-<meta property="og:image" content="https://jayagt.github.io/detox-ten/share-card.png">
+<meta property="og:site_name" content="Diet Plans">
+<meta property="og:url" content="https://jayagt.github.io/diet-plans/">
+<meta property="og:title" content="Diet Plans">
+<meta property="og:description" content="Ten-day plans worked through day by day: every meal timed, and every prep step set up the night before.">
+<meta property="og:image" content="https://jayagt.github.io/diet-plans/share-card.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ten day detox plan — a row of numbered day keys, Sunday through to day ten.">
+<meta property="og:image:alt" content="Diet plans — a row of numbered day keys, start through to day ten.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ten days, grain by grain">
-<meta name="twitter:description" content="A ten-day detox plan you can work through day by day: every meal timed, and every soak set up the night before.">
-<meta name="twitter:image" content="https://jayagt.github.io/detox-ten/share-card.png">
-<title>Detox Ten</title>
+<meta name="twitter:title" content="Diet Plans">
+<meta name="twitter:description" content="Ten-day plans worked through day by day: every meal timed, and every prep step set up the night before.">
+<meta name="twitter:image" content="https://jayagt.github.io/diet-plans/share-card.png">
+<title>Diet Plans</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Karla:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <style>
@@ -636,6 +636,7 @@ const PLANS = [
 /* ============================================================
    STATE
    ============================================================ */
+/* keep this key as it is — renaming it wipes everyone's saved ticks */
 const STORE = 'detox-ten-v5';
 let state = {checks:{}, view:'plans', plan:'detox', day:0, slot:null, open:null, theme:null};
 try{ const raw = localStorage.getItem(STORE); if(raw) state = Object.assign(state, JSON.parse(raw)); }catch(e){}

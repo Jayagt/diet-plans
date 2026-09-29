@@ -211,9 +211,8 @@
   .refbtn .rb-e{display:block; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
   .refbtn .rb-t{display:block; font-family:"Newsreader",serif; font-size:20px; margin-top:3px}
   .refbtn .rb-a{flex:0 0 auto; color:var(--green)}
-  .refh{font-size:23px; margin:30px 0 4px}
-  .refnote{font-size:15.5px; color:var(--ink-2); margin-bottom:10px; max-width:62ch}
-  .rlist{margin-top:8px}
+  .refnote{font-size:15.5px; color:var(--ink-2); margin-bottom:12px; max-width:62ch; font-style:italic}
+  .rlist{margin-top:2px}
   .rlist li{display:grid; grid-template-columns:30px 1fr; gap:11px; padding:9px 0; border-bottom:1px solid var(--line); font-size:16.5px; line-height:1.5}
   .rlist li:last-child{border-bottom:none}
   .rlist li .rn{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink-3); padding-top:3px}
@@ -1169,25 +1168,38 @@ function renderMeal(){
    REFERENCE SCREEN
    ============================================================ */
 function renderRef(){
-  const P = plan();
-  const secs = (P.reference || []).map(sec=>{
-    let body;
+  const P = plan(), R = P.reference || [];
+  const secs = R.map((sec,si)=>{
+    let body, count;
     if(sec.rows){
+      count = sec.rows.length + ' rows';
       body = '<div class="tablewrap"><table><thead><tr>'+
         sec.cols.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+
         sec.rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i===0?'<b>'+c+'</b>':c)+'</td>').join('')+'</tr>').join('')+
         '</tbody></table></div>';
     } else {
+      count = sec.items.length + (sec.items.length===1?' item':' items');
       body = '<ol class="rlist">'+sec.items.map((it,i)=>
         '<li>'+(sec.ordered ? '<span class="rn">'+(i+1)+'</span>' : '<span class="rn">·</span>')+'<span>'+it+'</span></li>').join('')+'</ol>';
     }
-    return '<h2 class="refh">'+sec.h+'</h2>'+(sec.note?'<p class="refnote">'+sec.note+'</p>':'')+body;
+    return '<div class="fold"><button class="fold-b" type="button" data-ref="'+si+'" aria-expanded="false" aria-controls="refsec'+si+'">'+
+      '<h3>'+sec.h+'</h3><span class="fc">'+count+'</span>'+CHEV+'</button>'+
+      '<div class="fold-body" id="refsec'+si+'" hidden>'+
+        (sec.note?'<p class="refnote">'+sec.note+'</p>':'')+body+'</div></div>';
   }).join('');
-  document.getElementById('refBody').innerHTML =
+  const host = document.getElementById('refBody');
+  host.innerHTML =
     '<div class="anim"><div class="hd"><p class="eyebrow">'+P.name+'</p><h1>Reference</h1>'+
-    '<p class="sub">Everything the plan says beyond the daily screens — kept here so those stay short.</p></div>'+
+    '<p class="sub">Everything the plan says beyond the daily screens. Tap a card to open it.</p></div>'+
     secs+
     '<div class="foot">Plan by Aayurspandana · Ayur-Aahar-Aarogya.</div></div>';
+  host.querySelectorAll('.fold-b').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const open = btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded', String(!open));
+      document.getElementById('refsec'+btn.dataset.ref).hidden = open;
+    });
+  });
 }
 
 /* ============================================================

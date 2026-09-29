@@ -211,6 +211,13 @@
   .refbtn .rb-e{display:block; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
   .refbtn .rb-t{display:block; font-family:"Newsreader",serif; font-size:20px; margin-top:3px}
   .refbtn .rb-a{flex:0 0 auto; color:var(--green)}
+  .reflist{display:grid; gap:12px; grid-template-columns:repeat(2,1fr); margin-top:6px}
+  @media (max-width:640px){ .reflist{grid-template-columns:1fr} }
+  .k.refcard{padding:16px 17px 17px; display:flex; flex-direction:column; min-height:104px}
+  .k.refcard .rc-t{font-family:"Newsreader",serif; font-size:21px; line-height:1.2; margin-top:5px}
+  .k.refcard .rc-c{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink-3); margin-top:auto; padding-top:10px;
+    display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .k.refcard .rc-c svg{color:var(--green)}
   .refnote{font-size:15.5px; color:var(--ink-2); margin-bottom:12px; max-width:62ch; font-style:italic}
   .rlist{margin-top:2px}
   .rlist li{display:grid; grid-template-columns:30px 1fr; gap:11px; padding:9px 0; border-bottom:1px solid var(--line); font-size:16.5px; line-height:1.5}
@@ -304,6 +311,7 @@
 <section class="screen" id="v-days"><div class="pad fill" id="daysBody"></div></section>
 <section class="screen" id="v-day"><div class="pad fill" id="dayBody"></div></section>
 <section class="screen" id="v-ref"><div class="pad scrolls" style="padding-block:18px 40px" id="refBody"></div></section>
+<section class="screen" id="v-refsec"><div class="pad scrolls" style="padding-block:18px 40px" id="refSecBody"></div></section>
 <section class="screen" id="v-meal"><div class="pad scrolls" style="padding-block:18px 30px" id="mealBody"></div></section>
 
 <div class="toasts" id="toasts" aria-live="polite"></div>
@@ -826,7 +834,7 @@ const PLANS = [
    ============================================================ */
 /* keep this key as it is — renaming it wipes everyone's saved ticks */
 const STORE = 'detox-ten-v5';
-let state = {checks:{}, view:'plans', plan:'detox', day:0, slot:null, open:null, theme:null};
+let state = {checks:{}, view:'plans', plan:'detox', day:1, slot:null, open:null, refSec:0, theme:null};
 try{ const raw = localStorage.getItem(STORE); if(raw) state = Object.assign(state, JSON.parse(raw)); }catch(e){}
 function save(){ try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){} }
 const ck = k => !!state.checks[k];
@@ -1167,57 +1175,82 @@ function renderMeal(){
 /* ============================================================
    REFERENCE SCREEN
    ============================================================ */
+function refCount(sec){
+  return sec.rows ? sec.rows.length+' rows'
+    : sec.items.length + (sec.items.length===1 ? ' item' : ' items');
+}
+function refBody(sec){
+  if(sec.rows){
+    return '<div class="tablewrap"><table><thead><tr>'+
+      sec.cols.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+
+      sec.rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i===0?'<b>'+c+'</b>':c)+'</td>').join('')+'</tr>').join('')+
+      '</tbody></table></div>';
+  }
+  return '<ol class="rlist">'+sec.items.map((it,i)=>
+    '<li>'+(sec.ordered ? '<span class="rn">'+(i+1)+'</span>' : '<span class="rn">·</span>')+'<span>'+it+'</span></li>').join('')+'</ol>';
+}
+
 function renderRef(){
   const P = plan(), R = P.reference || [];
-  const secs = R.map((sec,si)=>{
-    let body, count;
-    if(sec.rows){
-      count = sec.rows.length + ' rows';
-      body = '<div class="tablewrap"><table><thead><tr>'+
-        sec.cols.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+
-        sec.rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i===0?'<b>'+c+'</b>':c)+'</td>').join('')+'</tr>').join('')+
-        '</tbody></table></div>';
-    } else {
-      count = sec.items.length + (sec.items.length===1?' item':' items');
-      body = '<ol class="rlist">'+sec.items.map((it,i)=>
-        '<li>'+(sec.ordered ? '<span class="rn">'+(i+1)+'</span>' : '<span class="rn">·</span>')+'<span>'+it+'</span></li>').join('')+'</ol>';
-    }
-    return '<div class="fold"><button class="fold-b" type="button" data-ref="'+si+'" aria-expanded="false" aria-controls="refsec'+si+'">'+
-      '<h3>'+sec.h+'</h3><span class="fc">'+count+'</span>'+CHEV+'</button>'+
-      '<div class="fold-body" id="refsec'+si+'" hidden>'+
-        (sec.note?'<p class="refnote">'+sec.note+'</p>':'')+body+'</div></div>';
-  }).join('');
   const host = document.getElementById('refBody');
   host.innerHTML =
     '<div class="anim"><div class="hd"><p class="eyebrow">'+P.name+'</p><h1>Reference</h1>'+
-    '<p class="sub">Everything the plan says beyond the daily screens. Tap a card to open it.</p></div>'+
-    secs+
+    '<p class="sub">Everything the plan says beyond the daily screens.</p></div>'+
+    '<div class="reflist" id="refList">'+ R.map((sec,si)=>
+      '<button class="k refcard" type="button" data-ref="'+si+'">'+
+        '<span class="band"></span>'+
+        '<span class="rc-t">'+sec.h+'</span>'+
+        '<span class="rc-c">'+refCount(sec)+ARROW+'</span>'+
+      '</button>').join('') +'</div>'+
     '<div class="foot">Plan by Aayurspandana · Ayur-Aahar-Aarogya.</div></div>';
-  host.querySelectorAll('.fold-b').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const open = btn.getAttribute('aria-expanded')==='true';
-      btn.setAttribute('aria-expanded', String(!open));
-      document.getElementById('refsec'+btn.dataset.ref).hidden = open;
-    });
+  document.getElementById('refList').addEventListener('click', ev=>{
+    const b = ev.target.closest('.k.refcard'); if(!b) return;
+    state.refSec = Number(b.dataset.ref); save(); go('refsec');
   });
+}
+
+function renderRefSec(){
+  const P = plan(), R = P.reference || [];
+  const si = Math.min(state.refSec || 0, R.length-1), sec = R[si];
+  const prev = R[si-1], next = R[si+1];
+  document.getElementById('refSecBody').innerHTML =
+    '<div class="anim"><div class="hd"><p class="eyebrow">'+P.name+' · reference</p>'+
+    '<h1>'+sec.h+'</h1><div class="badges"><span class="when">'+refCount(sec)+'</span></div></div>'+
+    (sec.note?'<p class="refnote">'+sec.note+'</p>':'')+
+    refBody(sec)+
+    '<div class="prevnext">'+
+      '<button class="pnbtn" type="button" id="rsPrev"'+(prev?'':' disabled')+'>'+
+        '<span class="pn-l">Previous</span>'+(prev?prev.h:'—')+'</button>'+
+      '<button class="pnbtn next" type="button" id="rsNext"'+(next?'':' disabled')+'>'+
+        '<span class="pn-l">Next</span>'+(next?next.h:'—')+'</button></div>'+
+    '<div class="foot">Plan by Aayurspandana · Ayur-Aahar-Aarogya.</div></div>';
+  const hop = d => { state.refSec = si + d; save(); renderRefSec(); updateNav(); window.scrollTo(0,0); };
+  const pv = document.getElementById('rsPrev'), nx = document.getElementById('rsNext');
+  if(!pv.disabled) pv.addEventListener('click', ()=>hop(-1));
+  if(!nx.disabled) nx.addEventListener('click', ()=>hop(1));
 }
 
 /* ============================================================
    NAVIGATION
    ============================================================ */
-const VIEWS = ['plans','days','day','meal','ref'];
-const UP = {days:'plans', day:'days', meal:'day', ref:'days'};
+const VIEWS = ['plans','days','day','meal','ref','refsec'];
+const UP = {days:'plans', day:'days', meal:'day', ref:'days', refsec:'ref'};
 
 function updateNav(){
   const back = document.getElementById('back');
   const crumb = document.getElementById('crumb');
   const prog = document.getElementById('navprog');
   back.hidden = state.view === 'plans';
-  const labels = {plans:'', days:'Plans', day:plan().name, meal:unit()+' '+state.day, ref:plan().name};
+  const labels = {plans:'', days:'Plans', day:plan().name, meal:unit()+' '+state.day, ref:plan().name, refsec:'Reference'};
   document.getElementById('backlab').textContent = labels[state.view] || 'Back';
 
   const e = entry(), t = tpl(e);
-  if(state.view === 'ref'){ crumb.textContent = plan().name.toUpperCase()+' · REFERENCE'; prog.textContent = ''; }
+  if(state.view === 'refsec'){
+    const R = plan().reference || [], sec = R[Math.min(state.refSec||0, R.length-1)];
+    crumb.textContent = 'REFERENCE · ' + (sec ? sec.h.toUpperCase() : '');
+    prog.textContent = R.length ? ((state.refSec||0)+1)+'/'+R.length : '';
+  }
+  else if(state.view === 'ref'){ crumb.textContent = plan().name.toUpperCase()+' · REFERENCE'; prog.textContent = ''; }
   else if(state.view === 'plans'){ crumb.textContent = 'PLANS'; prog.textContent = ''; }
   else if(state.view === 'days'){
     const s = planPct(plan());
@@ -1244,6 +1277,7 @@ function go(view){
   if(view==='day')   renderDay();
   if(view==='meal')  renderMeal();
   if(view==='ref')   renderRef();
+  if(view==='refsec') renderRefSec();
   updateNav();
   window.scrollTo(0,0);
 }

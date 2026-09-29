@@ -583,16 +583,6 @@ D.sun = {
   ], foot:'The same Monday to Wednesday rotation runs again. Three days to the finish.'}
 };
 
-/* ---- Day 0 exists so the Sunday shop and soak have somewhere to live. ---- */
-D.prep = {
-  name:'Sunday', wd:'SUN', type:'prep', slots:[],
-  night:{head:'Monday — Day 1', tasks:[
-    {t:'⚑ 8:00 pm', d:'<b>Soak 1½ cups whole green gram.</b> Monday needs about five pesarattu across the day. Eight hours minimum — this is the one thing that must happen tonight.', flag:true},
-    {t:'8:30 pm', d:'<b>Set curd.</b> Boil 1 litre of milk, cool it to lukewarm, stir in 2 tbsp of curd and keep it covered overnight.'},
-    {t:'Tonight', d:'Wash the cucumbers, carrot and cabbage. Put the apple where you will see it at 4 pm tomorrow.'}
-  ], foot:'Grind the green gram at 5:15 tomorrow morning — thick, no fermenting.'}
-};
-
 const FINISH = {head:'the finish line', tasks:[
   {t:'Tomorrow', d:'<b>Weigh yourself first thing, on an empty stomach.</b> The target for these ten days was 1 to 1.5 kg.'},
   {t:'This week', d:'Book the follow-up consultation — it is scheduled for right after the detox.'},
@@ -601,7 +591,6 @@ const FINISH = {head:'the finish line', tasks:[
 ], foot:'Nothing to soak tonight. That is the whole ten days.'};
 
 const SCHEDULE = [
-  {n:0,  key:'prep'},
   {n:1,  key:'mon'},
   {n:2,  key:'tue'},
   {n:3,  key:'wed'},
@@ -912,7 +901,7 @@ function renderDays(){
         '</button>';
       }).join('')+
     '</div>'+
-    (isSeq() ? '<div class="legend"><span><i></i> Grain-free</span><span><i class="g"></i> Grain day</span><span><i class="p"></i> Prep evening</span></div>' : '')+'</div>';
+    (isSeq() ? '<div class="legend"><span><i></i> Grain-free</span><span><i class="g"></i> Grain day</span></div>' : '')+'</div>';
   document.getElementById('dayGrid').addEventListener('click', ev=>{
     const b = ev.target.closest('.k.day'); if(!b) return;
     state.day = Number(b.dataset.n); go('day');
